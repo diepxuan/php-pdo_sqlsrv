@@ -3,9 +3,9 @@ Priority: optional
 Maintainer: Tyson Andre <tandre@php.net>
 Uploaders: Tran Ngoc Duc <ductn@diepxuan.com>
 Build-Depends: debhelper-compat (= 12),
-  debhelper (>= 10~),
-  dh-php (= 0.35),
-  php-all-dev
+               debhelper (>= 10~),
+               dh-php (= 0.35),
+               php-all-dev
 Section: php
 Standards-Version: 2.0.1
 Homepage: https://pecl.php.net/package/runkit7
