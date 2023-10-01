@@ -1,3 +1,4 @@
-[submodule "runkit7-4.0.0~a6"]
-	path = runkit7-4.0.0~a6
-	url = git@github.com:runkit7/runkit7.git
+[submodule "src/runkit7-4.0.0a6"]
+path = src/runkit7-4.0.0a6
+url = git@github.com:runkit7/runkit7.git
+branch = 4.0.0a6

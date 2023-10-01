@@ -16,4 +16,12 @@ indent_style = space
 indent_size = 2
 
 [changelog]
+ignore = true
+indent_size = 2
+
+[.gitmodules]
+ignore = true
+
+[.git*]
+ignore = true
 indent_size = 2
