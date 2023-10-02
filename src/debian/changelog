@@ -2,7 +2,7 @@ php-runkit7 (4.0.0~a6+ubuntu23.10.1~rc1-3) mantic; urgency=medium
 
   * No-change backport to Mantic
 
- -- Tran Ngoc Duc <ductn@diepxuan.com>  Sun, 01 Oct 2023 21:15:06 +0700
+ -- Tran Ngoc Duc <ductn@diepxuan.com>  Sun, 01 Oct 2023 20:15:20 +0700
 
 php-runkit7 (4.0.0~a6+ubuntu20.04.5~rc1-3) focal; urgency=medium
 

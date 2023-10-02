@@ -1,0 +1,95 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Sun, 01 Oct 2023 18:05:54 +0700
+Source: php-runkit7
+Binary: php-runkit7 php-runkit7-all-dev php7.2-runkit7 php7.3-runkit7 php7.4-runkit7 php8.0-runkit7 php8.1-runkit7 php8.2-runkit7
+Architecture: source all amd64
+Version: 4.0.0~a6+4.0~rc1-3
+Distribution: unstable
+Urgency: medium
+Maintainer: Tyson Andre <tandre@php.net>
+Changed-By: Tran Ngoc Duc <ductn@diepxuan.com>
+Description:
+ php-runkit7 - Replace, rename, and remove user defined
+ php-runkit7-all-dev - Replace, rename, and remove user defined
+ php7.2-runkit7 - Replace, rename, and remove user defined
+ php7.3-runkit7 - Replace, rename, and remove user defined
+ php7.4-runkit7 - Replace, rename, and remove user defined
+ php8.0-runkit7 - Replace, rename, and remove user defined
+ php8.1-runkit7 - Replace, rename, and remove user defined
+ php8.2-runkit7 - Replace, rename, and remove user defined
+Changes:
+ php-runkit7 (4.0.0~a6+4.0~rc1-3) unstable; urgency=medium
+ .
+   * Bump the dependency on dh-php to >= 0.35
+Checksums-Sha1:
+ 97f326ff0933327e65a578cdc646b25a66dd73df 1592 php-runkit7_4.0.0~a6+4.0~rc1-3.dsc
+ 6597fbe77d03ac77db36365c7dde97c9953a6fb4 118296 php-runkit7_4.0.0~a6+4.0~rc1-3.tar.xz
+ 94e626baabfbda8532637bbd6b423915ff0074cc 2884 php-runkit7-all-dev_4.0.0~a6+4.0~rc1-3_all.deb
+ 0ef498ae0f9c8410fa47975c7663843cceaab710 17147 php-runkit7_4.0.0~a6+4.0~rc1-3_amd64.buildinfo
+ 357618042c57cb94dd3abbda3c131f5ed643561e 2836 php-runkit7_4.0.0~a6+4.0~rc1-3_amd64.deb
+ 4d747f3fcba689d5de981001c06c068b9e38fc10 118416 php7.2-runkit7-dbgsym_4.0.0~a6+4.0~rc1-3_amd64.ddeb
+ 20b1227cb0c31aa3b3986e462ae683a9f95fff54 33204 php7.2-runkit7_4.0.0~a6+4.0~rc1-3_amd64.deb
+ 857a66b400f41253c010418dfae4889659168969 124212 php7.3-runkit7-dbgsym_4.0.0~a6+4.0~rc1-3_amd64.ddeb
+ 0d2404e9c30d52115956901f6ed8fafb228202d2 33156 php7.3-runkit7_4.0.0~a6+4.0~rc1-3_amd64.deb
+ 60c0bdcb90ff91441ef2a1effe78d889d92b26f3 124648 php7.4-runkit7-dbgsym_4.0.0~a6+4.0~rc1-3_amd64.ddeb
+ 1c0098f2e8308e88e68c606871f7e3d7167270b8 33244 php7.4-runkit7_4.0.0~a6+4.0~rc1-3_amd64.deb
+ 93616425c8310408b60c497c56b57e2b9c0b0b18 123848 php8.0-runkit7-dbgsym_4.0.0~a6+4.0~rc1-3_amd64.ddeb
+ 76da4c8566c4f3f7f3f8976280547b9f56f5bf71 32864 php8.0-runkit7_4.0.0~a6+4.0~rc1-3_amd64.deb
+ c10cd3120790bbfb31f70005fcf03a51b5bfb462 124848 php8.1-runkit7-dbgsym_4.0.0~a6+4.0~rc1-3_amd64.ddeb
+ c0d70895755c72b81a2ccb7d17526061bb44f6b5 32800 php8.1-runkit7_4.0.0~a6+4.0~rc1-3_amd64.deb
+ 9efcb6762295351272060a9b37114b0b77adc6ff 130828 php8.2-runkit7-dbgsym_4.0.0~a6+4.0~rc1-3_amd64.ddeb
+ 92a49a934eddd90b8d8a30f373b03d0ce99e3fe8 33140 php8.2-runkit7_4.0.0~a6+4.0~rc1-3_amd64.deb
+Checksums-Sha256:
+ eb17f3c1f39d46e8cf28c878d5a29a1378be3df9606e47aac56f838ced8a8c20 1592 php-runkit7_4.0.0~a6+4.0~rc1-3.dsc
+ 402a8d6d526a6f99a2815af7fcd95c7c2138eae4da21b3070f71e9b42e0057e9 118296 php-runkit7_4.0.0~a6+4.0~rc1-3.tar.xz
+ d1cca57d871e22eb38a8e1af732de7d62f2df54ec4eacc7a6f5e36fb4568ed92 2884 php-runkit7-all-dev_4.0.0~a6+4.0~rc1-3_all.deb
+ 9faa321ca452e16bb0bbf263211beefbfae1930bb34e3832b051234ff9457a4d 17147 php-runkit7_4.0.0~a6+4.0~rc1-3_amd64.buildinfo
+ 3dd0bd7767b24c452373a099a8307f7e18ba4ffe28e1c05f560c8003812ae6a6 2836 php-runkit7_4.0.0~a6+4.0~rc1-3_amd64.deb
+ af46bb3914ce336b9c88082fa1b11044277b0e57f179df9ad3641c798562e3a9 118416 php7.2-runkit7-dbgsym_4.0.0~a6+4.0~rc1-3_amd64.ddeb
+ 326b9762a71dbffa36e2066968dd48d514922e5299819f2b8eefa8a8f718cc8d 33204 php7.2-runkit7_4.0.0~a6+4.0~rc1-3_amd64.deb
+ d2e3fcc21c3e0418c0d2fdfba787b80fd08b82dd6a4191c4d110972a402d5628 124212 php7.3-runkit7-dbgsym_4.0.0~a6+4.0~rc1-3_amd64.ddeb
+ a3c48ec3d97710c99f06661450e58d4cba0c99bbad9829d59e7a4f3598d78b5a 33156 php7.3-runkit7_4.0.0~a6+4.0~rc1-3_amd64.deb
+ 08d556fb6039b6f1c31856d0fc1b732c960c644280d44c6710f4f4e37048b283 124648 php7.4-runkit7-dbgsym_4.0.0~a6+4.0~rc1-3_amd64.ddeb
+ c7e8a2065f52d7bb9eddcb6f55d33a126b0f0db9454cb492380467d1c288f412 33244 php7.4-runkit7_4.0.0~a6+4.0~rc1-3_amd64.deb
+ ce2b2f8889e5f11a712ec041d45abcb4b35b8a4c67f636cfa6979d1e07eea151 123848 php8.0-runkit7-dbgsym_4.0.0~a6+4.0~rc1-3_amd64.ddeb
+ bc10d940d95f4e19fe1418db182631a2cee3580c5a11e1a51ebfb2eeeaf28eb1 32864 php8.0-runkit7_4.0.0~a6+4.0~rc1-3_amd64.deb
+ 267c3e2474078105e5c297961818479a63206a225a9b1b4b494f8de4f9d113e4 124848 php8.1-runkit7-dbgsym_4.0.0~a6+4.0~rc1-3_amd64.ddeb
+ 233ed098bc0eb1646b53f1739dd0dc1512dd941c113a69209172dbb57ea7328c 32800 php8.1-runkit7_4.0.0~a6+4.0~rc1-3_amd64.deb
+ 4f6a867afa9f97acdb10604b4370df13026733efdf696d6c9d463ebb4c8e7218 130828 php8.2-runkit7-dbgsym_4.0.0~a6+4.0~rc1-3_amd64.ddeb
+ 717d35c14819ba9ba35ef7a5d558a6bef7b9b77f6092e1c22a242515799f416e 33140 php8.2-runkit7_4.0.0~a6+4.0~rc1-3_amd64.deb
+Files:
+ 368800d9d930d0d1657713dfd2414f44 1592 php optional php-runkit7_4.0.0~a6+4.0~rc1-3.dsc
+ 0e5a7c618ee54cc93cfad5f0aa58d6af 118296 php optional php-runkit7_4.0.0~a6+4.0~rc1-3.tar.xz
+ 8e38045393d61c5528dae1c31d2b5773 2884 php optional php-runkit7-all-dev_4.0.0~a6+4.0~rc1-3_all.deb
+ 1f2a33412d19f1e93c39ebc1bcbf1244 17147 php optional php-runkit7_4.0.0~a6+4.0~rc1-3_amd64.buildinfo
+ 639255afb894ba312cb9d7df5c5c7881 2836 php optional php-runkit7_4.0.0~a6+4.0~rc1-3_amd64.deb
+ 08ae2be6c671054cbc4bd6da5cebb604 118416 debug optional php7.2-runkit7-dbgsym_4.0.0~a6+4.0~rc1-3_amd64.ddeb
+ 6a9e13871e16fe59162bc3cce79896d3 33204 php optional php7.2-runkit7_4.0.0~a6+4.0~rc1-3_amd64.deb
+ 91cc8e79ee7b6c48b8ed66eaffd5c0e6 124212 debug optional php7.3-runkit7-dbgsym_4.0.0~a6+4.0~rc1-3_amd64.ddeb
+ 206d8655eef1a17175564a7fa3ebe8c6 33156 php optional php7.3-runkit7_4.0.0~a6+4.0~rc1-3_amd64.deb
+ 80b2ac3934036be64c7d156556fb3ea5 124648 debug optional php7.4-runkit7-dbgsym_4.0.0~a6+4.0~rc1-3_amd64.ddeb
+ f008a270942881bfa5b75da83f6717ff 33244 php optional php7.4-runkit7_4.0.0~a6+4.0~rc1-3_amd64.deb
+ e2a4f489468916cfbfca9db4fb386f62 123848 debug optional php8.0-runkit7-dbgsym_4.0.0~a6+4.0~rc1-3_amd64.ddeb
+ d072249edefb375449ce8c734e81fcac 32864 php optional php8.0-runkit7_4.0.0~a6+4.0~rc1-3_amd64.deb
+ 710e8b5f2291f9ef2f7becce0bf42ded 124848 debug optional php8.1-runkit7-dbgsym_4.0.0~a6+4.0~rc1-3_amd64.ddeb
+ d4301015aa229f4d82e71b4a2a509c67 32800 php optional php8.1-runkit7_4.0.0~a6+4.0~rc1-3_amd64.deb
+ 0b71f9f6576f5f47bb9e55f804828e8c 130828 debug optional php8.2-runkit7-dbgsym_4.0.0~a6+4.0~rc1-3_amd64.ddeb
+ d010e97aaf75a8fff8d4620707c2203a 33140 php optional php8.2-runkit7_4.0.0~a6+4.0~rc1-3_amd64.deb
+
+-----BEGIN PGP SIGNATURE-----
+
+iQHHBAEBCgAxFiEEyL1dbGOOihGTiSkmfg7JF6UHS9MFAmUZUxwTHGR1Y3RuQGRp
+ZXB4dWFuLmNvbQAKCRB+DskXpQdL05oLDACB9T+y/b5kLXMiWXP35v7awIjTkKdA
+i5yHcD7JyjagaoFZm1tNuk8VHxi17ug9OEMTDkk/uok/VlYkNWFtW739qynfH77U
+yc3V7kuUKSULeZh7zRhu1QB+znSWjZ0SNG0iY791New84wRGuy65oQjs0+8v54qz
+I/D2nURJAc6dBcrdolz1D6NnsAO+q8c5haMSJ941jsuNi/EmVXo4Q4yuRxQuT5YU
+4n7SLB6p0JsAhcM471Q+B1dAOHR4RcoHsx/RrF7fydMweXCe1Un0s0dWvDiA79HZ
+bCx0P8JhcF6gHabNwPkT+NtjAhEWjzba/bKmLBjdv5NpwZMLJNMX8xVVahkDy6ay
+ZROMGNCzILg+X0i1x1zaeYdulFXupPFghkGJdb23Mzjqd89K4IJqSrCsxh7BYPdz
+A/WEvTROgVwyKNZAogJmK1Yzj2p7tY5i2vGxljxpLFVdTTPxVh99qJp9fJLguTZx
+v6IFN0vYTCPbLMUoRwapR8Lc1R/jMERFpoM=
+=6HH5
+-----END PGP SIGNATURE-----

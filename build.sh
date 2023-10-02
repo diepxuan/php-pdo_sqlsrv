@@ -22,7 +22,7 @@ __build() {
     dpkg-buildpackage -S
     cd -
 
-    __dput_ppa
+    mv *.ddeb *.deb *.buildinfo *.changes *.dsc *.tar.xz dists/ >/dev/null 2>&1
 }
 
 __build_time() {
@@ -30,8 +30,6 @@ __build_time() {
 }
 
 __dput_ppa() {
-    mv *.ddeb *.deb *.buildinfo *.changes *.dsc *.tar.xz dists/ >/dev/null 2>&1
-
     packages=$(dpkg-scanpackages dists/ 2>/dev/null | grep "Filename:" | sed 's|Filename: ||g' | sed 's|_amd64.deb|_source.changes|g' | sed 's|_all.deb|_source.changes|g')
 
     for package in $packages; do
@@ -39,5 +37,5 @@ __dput_ppa() {
     done
 }
 
-# __dput_ppa
 __build
+__dput_ppa
