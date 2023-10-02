@@ -2,7 +2,7 @@ php-runkit7 (4.0.0~a6+ubuntu23.10.1~rc2.2) mantic; urgency=medium
 
   * Build a package without zstd compression in Ubuntu 23.10
 
- -- Tran Ngoc Duc <ductn@diepxuan.com>  Mon, 02 Oct 2023 16:00:04 +0700
+ -- Tran Ngoc Duc <ductn@diepxuan.com>  Mon, 02 Oct 2023 16:30:34 +0700
 
 php-runkit7 (4.0.0~a6+ubuntu23.10.1~rc2.1) mantic; urgency=medium
 

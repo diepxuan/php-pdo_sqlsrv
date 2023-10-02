@@ -3,4 +3,4 @@ export REPORT_EXIT_STATUS:=0
 include /usr/share/dh-php/pkg-pecl.mk
 
 override_dh_builddeb:
-    dh_builddeb -- -Zgzip
+	dh_builddeb -- -Zgzip

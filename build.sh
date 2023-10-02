@@ -9,20 +9,16 @@ __build() {
     git submodule update --init -f
     cp src/runkit7-4.0.0a6/package.xml src/package.xml
 
-    echo " - build package"
-    echo "==============================="
     cd ./src/
     # dpkg-buildpackage
-    cd -
+    cd - >/dev/null
 
-    echo " - build source"
-    echo "==============================="
     cd ./src/
-    __build_status=$(dpkg-buildpackage -S)
-    cd -
+    __build_status=$(dpkg-buildpackage -S 2>&1)
+    cd - >/dev/null
 
     mkdir -p dists
-    mv *.ddeb *.deb *.buildinfo *.changes *.dsc *.tar.xz dists/ >/dev/null 2>&1
+    mv *.ddeb *.deb *.buildinfo *.changes *.dsc *.tar.xz *.tar.gz *.tar.* dists/ >/dev/null 2>&1
 }
 
 __build_time() {
@@ -30,11 +26,13 @@ __build_time() {
 }
 
 __dput_ppa() {
-    packages=$(dpkg-scanpackages dists/ 2>/dev/null | grep "Filename:" | sed 's|Filename: ||g' | sed 's|_amd64.deb|_source.changes|g' | sed 's|_all.deb|_source.changes|g')
-
-    for package in $packages; do
-        [[ -f $package ]] && dput ductn-ppa $package
-    done
+    # packages=$(dpkg-scanpackages dists/ 2>/dev/null | grep "Filename:" | sed 's|Filename: ||g' | sed 's|_amd64.deb|_source.changes|g' | sed 's|_all.deb|_source.changes|g')
+    package=dists/$(echo "$__build_status" | grep _source.changes | grep signfile | sed 's| signfile ||g')
+    # echo $package
+    dput ductn-ppa $package
+    # for package in $packages; do
+    #     [[ -f $package ]] && dput ductn-ppa $package
+    # done
 }
 
 __build
