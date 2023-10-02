@@ -22,6 +22,7 @@ __build() {
     dpkg-buildpackage -S
     cd -
 
+    mkdir -p dists
     mv *.ddeb *.deb *.buildinfo *.changes *.dsc *.tar.xz dists/ >/dev/null 2>&1
 }
 
