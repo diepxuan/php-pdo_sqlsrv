@@ -11,16 +11,18 @@ __build() {
 
     echo " - build package"
     echo "==============================="
-
     cd ./src/
-    dpkg-buildpackage
+    # dpkg-buildpackage
     cd -
 
     echo " - build source"
     echo "==============================="
     cd ./src/
-    dpkg-buildpackage -S
+    __build_status=$(dpkg-buildpackage -S)
     cd -
+
+    mkdir -p dists
+    mv *.ddeb *.deb *.buildinfo *.changes *.dsc *.tar.xz dists/ >/dev/null 2>&1
 }
 
 __build_time() {
@@ -28,9 +30,6 @@ __build_time() {
 }
 
 __dput_ppa() {
-    mkdir -p dists
-    mv *.ddeb *.deb *.buildinfo *.changes *.dsc *.tar.xz dists/ >/dev/null 2>&1
-
     packages=$(dpkg-scanpackages dists/ 2>/dev/null | grep "Filename:" | sed 's|Filename: ||g' | sed 's|_amd64.deb|_source.changes|g' | sed 's|_all.deb|_source.changes|g')
 
     for package in $packages; do
