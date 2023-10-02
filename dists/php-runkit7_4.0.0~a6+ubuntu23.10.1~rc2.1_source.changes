@@ -1,0 +1,43 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Mon, 02 Oct 2023 14:57:14 +0700
+Source: php-runkit7
+Architecture: source
+Version: 4.0.0~a6+ubuntu23.10.1~rc2.1
+Distribution: mantic
+Urgency: medium
+Maintainer: Tyson Andre <tandre@php.net>
+Changed-By: Tran Ngoc Duc <ductn@diepxuan.com>
+Changes:
+ php-runkit7 (4.0.0~a6+ubuntu23.10.1~rc2.1) mantic; urgency=medium
+ .
+   * No-change backport to Mantic in proxmox
+Checksums-Sha1:
+ f82e24d06d66aec034dae6a67d563cdbfdda9250 1632 php-runkit7_4.0.0~a6+ubuntu23.10.1~rc2.1.dsc
+ a0cb271fed0060b5f9dade5e3d46993a58b65013 118404 php-runkit7_4.0.0~a6+ubuntu23.10.1~rc2.1.tar.xz
+ 438e7b20a0da7201ab251eb6153f730b1e9ad557 10804 php-runkit7_4.0.0~a6+ubuntu23.10.1~rc2.1_source.buildinfo
+Checksums-Sha256:
+ 17639f91325c4449d31febb3eb7a987fed04335d4044110009914af5989b9bdc 1632 php-runkit7_4.0.0~a6+ubuntu23.10.1~rc2.1.dsc
+ 3b21b0a05672fd0d7e0098d37f7c7dea9d1989b230046a2aa97687724e6ca094 118404 php-runkit7_4.0.0~a6+ubuntu23.10.1~rc2.1.tar.xz
+ 3517b8e439bda06495f186ff1e4e34d6bc1a18ad3df8dbc1c4fbe6391a9f9084 10804 php-runkit7_4.0.0~a6+ubuntu23.10.1~rc2.1_source.buildinfo
+Files:
+ 4e91f28f336e3b0c6cf2f4e03b0522ff 1632 php optional php-runkit7_4.0.0~a6+ubuntu23.10.1~rc2.1.dsc
+ f2f0676c062a4dbfa986db0fde18e6c0 118404 php optional php-runkit7_4.0.0~a6+ubuntu23.10.1~rc2.1.tar.xz
+ 65e3d2a907a40d05d11c1981d7034fab 10804 php optional php-runkit7_4.0.0~a6+ubuntu23.10.1~rc2.1_source.buildinfo
+
+-----BEGIN PGP SIGNATURE-----
+
+iQHHBAEBCgAxFiEEyL1dbGOOihGTiSkmfg7JF6UHS9MFAmUad+ETHGR1Y3RuQGRp
+ZXB4dWFuLmNvbQAKCRB+DskXpQdL0zJGC/9/Bx9tWUBgpHDBeQp6HrnJ6bLprcPo
+gXiOpZkX/NJdudxDBW9PePEkw9fnsPg0CEtMWUGOLxmA2s4G2wlOCX7025E6Q8yZ
+yHjYrjXegUr0dj/H5zrC1BgLQPNbGo4GETgYQjEuVQD0M+VgLCMlWNx37bUtV31H
+q/GdV80sODyizANY3B6eAuZbYTsWRcLtTU7YODfxX6GWG+WziwMDaZXBp71s/NNy
+4POCPk+mQyXPl1mMBHwOzkLoD3Wjc4b+dR6mv0T4VL5ICr1R+cXXVsN2E9ydi6w0
+fw14UlVsB54tsR0XWKJ6QRlsha4chHtmMOsE4rUxcAQ60wPBsL7UNpXkGwmVCKHj
+x/NN5jAH1/bwS8p1RsX4+6sRaLsSe8nArYyms/pabnrCrFQ74lR4it5ShtNoBK0l
+SRzqCs/D82T0xP8eLjDf+wtDbTSk2U4tfqju6fbqeLt+ErxtrnNYkhsQ9XGgc+vw
+L61E7JxN0rEAXM64xFCnj94q3qWaTUQO8cw=
+=w5s8
+-----END PGP SIGNATURE-----
