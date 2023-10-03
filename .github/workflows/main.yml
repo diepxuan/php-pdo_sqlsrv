@@ -39,11 +39,6 @@ jobs:
       - name: Build and test in docker
         run: sudo bash ci/run.sh
 
-      - name: Move packages builded to dists
-        run: |
-          mkdir -p dists
-          cp *.ddeb *.deb *.buildinfo *.changes *.dsc *.tar.xz *.tar.gz *.tar.* dists/
-
       - name: Configure Git
         run : |
           git config --local user.email "${{ secrets.email }}"
