@@ -26,16 +26,12 @@ release_url=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/$owne
 release_tag=$(basename $release_url)
 release_dir=$INPUT_SOURCE_DIR/$project-$release_tag
 
-start_group "Clone extension source"
 rm -rf $release_dir
 git clone -b $release_tag -- https://github.com/$owner/$project.git $release_dir
-end_group
 
-start_group "Create package.xml from extension source"
 cp $release_dir/package.xml $INPUT_SOURCE_DIR/package.xml
 ls -la $release_dir
 ls -la $INPUT_SOURCE_DIR
-end_group
 
 # Update time building
 sed -i -e "0,/<$email>  .*/ s/<$email>  .*/<$email>  $(date -R)/g" $changelog

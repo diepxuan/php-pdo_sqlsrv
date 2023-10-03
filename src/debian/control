@@ -4,7 +4,7 @@ Maintainer: Tyson Andre <tandre@php.net>
 Uploaders: Tran Ngoc Duc <ductn@diepxuan.com>
 Build-Depends: debhelper-compat (= 12),
                debhelper (>= 10~),
-               dh-php (>= 4~),
+               dh-php,
                php-all-dev
 Section: php
 Standards-Version: 2.0.1
