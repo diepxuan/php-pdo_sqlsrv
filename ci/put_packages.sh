@@ -7,5 +7,9 @@ set -e
 mkdir -p $dists_dir
 
 while read -r file; do
-    [[ -f "$source_dir/$file" ]] && cp "$source_dir/$file" "$dists_dir" || true
+    [[ -f "$source_dir/$file" ]] && cp -urf "$source_dir/$file" "$dists_dir/" || true
 done < <(ls $source_dir/ | grep -E '^php.*(.deb|.ddeb|.buildinfo|.changes|.dsc|.tar.xz|.tar.gz|.tar.[[:alpha:]]+)$')
+
+while read -r file; do
+    [[ -f "$pwd_dir/$file" ]] && cp -urf "$pwd_dir/$file" "$dists_dir/" || true
+done < <(ls $pwd_dir/ | grep -E '^php.*(.deb|.ddeb|.buildinfo|.changes|.dsc|.tar.xz|.tar.gz|.tar.[[:alpha:]]+)$')

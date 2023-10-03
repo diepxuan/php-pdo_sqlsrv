@@ -27,7 +27,8 @@ fi
 printf "man-db man-db/auto-update boolean false\n" | debconf-set-selections
 
 # add repository for install missing depends
-sudo add-apt-repository ppa:ondrej/php
+grep -r "/ondrej/php" /etc/apt/sources.list /etc/apt/sources.list.d/*.list >/dev/null 2>&1 ||
+    sudo add-apt-repository ppa:ondrej/php -y
 
 apt-get update
 

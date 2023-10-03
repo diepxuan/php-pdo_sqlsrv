@@ -1,6 +1,5 @@
-# Runs runkit7's tests and verifies that the package can be built.
-
-name: CI
+# Runs tests and verifies that the package can be built.
+name: Build
 
 # Controls when the action will run.
 on:
