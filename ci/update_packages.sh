@@ -14,7 +14,7 @@ RELEASE=${DISTRIB_RELEASE:-${VERSION_ID}}
 RELEASE=${RELEASE:-$(echo $DISTRIB_DESCRIPTION | awk '{print $2}' | cut -d '.' -f 1,2)}
 RELEASE=${RELEASE:-$(echo $VERSION | awk '{print $1}' | cut -d '.' -f 1,2))}
 
-[[ $ID -eq 'debian' ]] && [[ $RELEASE -eq 11 ]] && RELEASE=20.04 && CODENAME=focal
+[[ $ID -eq 'debian' ]] && [[ $RELEASE -eq 11 ]] && RELEASE='20.04' && CODENAME=focal
 
 # user evironment
 email=ductn@diepxuan.com
@@ -25,9 +25,17 @@ owner=runkit7 project=runkit7
 release_url=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/$owner/$project/releases/latest)
 release_tag=$(basename $release_url)
 release_dir=$INPUT_SOURCE_DIR/$project-$release_tag
+
+start_group "Clone extension source"
 rm -rf $release_dir
 git clone -b $release_tag -- https://github.com/$owner/$project.git $release_dir
+end_group
+
+start_group "Create package.xml from extension source"
 cp $release_dir/package.xml $INPUT_SOURCE_DIR/package.xml
+ls -la $release_dir
+ls -la $INPUT_SOURCE_DIR
+end_group
 
 # Update time building
 sed -i -e "0,/<$email>  .*/ s/<$email>  .*/<$email>  $(date -R)/g" $changelog

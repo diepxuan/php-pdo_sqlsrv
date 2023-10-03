@@ -26,6 +26,9 @@ fi
 # essential packages. It is reasonably safe to blindly assume it is installed.
 printf "man-db man-db/auto-update boolean false\n" | debconf-set-selections
 
+# add repository for install missing depends
+sudo add-apt-repository ppa:ondrej/php
+
 apt-get update
 
 # shellcheck disable=SC2086

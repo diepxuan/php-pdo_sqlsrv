@@ -17,17 +17,17 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
+    runs-on: ${{matrix.operating-system}}
     strategy:
       fail-fast: false
       matrix:
-        runner: [ubuntu-latest, ubuntu-20.04]
-
-    runs-on: ${{matrix.runner}}
-
+        operating-system: [ubuntu-22.04, ubuntu-20.04]
+        # php-versions: ['5.3', '5.4', '5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       # Runs a single command using the runners shell
       - name: Build and test in docker
