@@ -1,0 +1,27 @@
+Format: 1.8
+Date: Tue, 03 Oct 2023 18:17:56 +0000
+Source: php-runkit7
+Architecture: source
+Version: 4.0.0a6+ubuntu20.04~rc3
+Distribution: focal
+Urgency: medium
+Maintainer: Tyson Andre <tandre@php.net>
+Changed-By: Tran Ngoc Duc <ductn@diepxuan.com>
+Changes:
+ php-runkit7 (4.0.0a6+ubuntu20.04~rc3) focal; urgency=medium
+ .
+   * No-change ReBuild a package
+   * Bump the dependency on dh-php to latest
+   * ISSUES: failed to push some refs
+Checksums-Sha1:
+ daf599b242589181271f5007cf1603bbf686e2b2 875 php-runkit7_4.0.0a6+ubuntu20.04~rc3.dsc
+ ad88d50af4586fa76eb476bf463c6904fbf23f73 155674 php-runkit7_4.0.0a6+ubuntu20.04~rc3.tar.gz
+ 068df44eca4df2fc093f99f9a87bcdc79b043e2a 13148 php-runkit7_4.0.0a6+ubuntu20.04~rc3_source.buildinfo
+Checksums-Sha256:
+ f6b08a4e2d13b38ce5dc6e82e6f5b06b786fb28737fd53ddbac93297a738c79f 875 php-runkit7_4.0.0a6+ubuntu20.04~rc3.dsc
+ 7ac2dec80abf50642edf1e6a4055e21fe0429be78dfdbdc105b32f600df5a912 155674 php-runkit7_4.0.0a6+ubuntu20.04~rc3.tar.gz
+ f1742bd2c66e25ab5359cb51ea88930901e5219e95f483bfdaf11cc131ebe55b 13148 php-runkit7_4.0.0a6+ubuntu20.04~rc3_source.buildinfo
+Files:
+ 4e074b021a3a7e13190a69265024bc0a 875 php optional php-runkit7_4.0.0a6+ubuntu20.04~rc3.dsc
+ 8c4f6b0a3c8425f36b7f5f7aa831fefc 155674 php optional php-runkit7_4.0.0a6+ubuntu20.04~rc3.tar.gz
+ fd6279568a5d3c1613865dbd313da5d5 13148 php optional php-runkit7_4.0.0a6+ubuntu20.04~rc3_source.buildinfo

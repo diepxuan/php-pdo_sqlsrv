@@ -1,0 +1,79 @@
+Format: 1.8
+Date: Tue, 03 Oct 2023 18:17:56 +0000
+Source: php-runkit7
+Binary: php-runkit7 php-runkit7-all-dev php7.2-runkit7 php7.3-runkit7 php7.4-runkit7 php8.0-runkit7 php8.1-runkit7 php8.2-runkit7
+Architecture: source all amd64
+Version: 4.0.0a6+ubuntu20.04~rc3
+Distribution: focal
+Urgency: medium
+Maintainer: Tyson Andre <tandre@php.net>
+Changed-By: Tran Ngoc Duc <ductn@diepxuan.com>
+Description:
+ php-runkit7 - Replace, rename, and remove user defined
+ php-runkit7-all-dev - Replace, rename, and remove user defined
+ php7.2-runkit7 - Replace, rename, and remove user defined
+ php7.3-runkit7 - Replace, rename, and remove user defined
+ php7.4-runkit7 - Replace, rename, and remove user defined
+ php8.0-runkit7 - Replace, rename, and remove user defined
+ php8.1-runkit7 - Replace, rename, and remove user defined
+ php8.2-runkit7 - Replace, rename, and remove user defined
+Changes:
+ php-runkit7 (4.0.0a6+ubuntu20.04~rc3) focal; urgency=medium
+ .
+   * No-change ReBuild a package
+   * Bump the dependency on dh-php to latest
+   * ISSUES: failed to push some refs
+Checksums-Sha1:
+ df9e7aa317dd3ff57b8f89ed784955eed281f0bc 875 php-runkit7_4.0.0a6+ubuntu20.04~rc3.dsc
+ c2e8e1b40d0a5e5fcdbcb93c8190b709537deba4 155581 php-runkit7_4.0.0a6+ubuntu20.04~rc3.tar.gz
+ e715371dc207ab0b3be441735bf702c407987927 3140 php-runkit7-all-dev_4.0.0a6+ubuntu20.04~rc3_all.deb
+ 065ce0d38c9433790b79d551cf0c370e70b1498d 17687 php-runkit7_4.0.0a6+ubuntu20.04~rc3_amd64.buildinfo
+ e5bb2437cdb113222bf129e72b716e9aa25c23e6 3086 php-runkit7_4.0.0a6+ubuntu20.04~rc3_amd64.deb
+ 0e5ec979b46ee007ab5113f9b03ac9750894f30b 118654 php7.2-runkit7-dbgsym_4.0.0a6+ubuntu20.04~rc3_amd64.ddeb
+ 7d43021c067443366205b770717bbfec71562d13 38688 php7.2-runkit7_4.0.0a6+ubuntu20.04~rc3_amd64.deb
+ a07c1f325b062677098c7b8d6a4ff759d3d9b2e5 124224 php7.3-runkit7-dbgsym_4.0.0a6+ubuntu20.04~rc3_amd64.ddeb
+ f11e3b30b06094b58a1a30a1935318d76a75e976 38742 php7.3-runkit7_4.0.0a6+ubuntu20.04~rc3_amd64.deb
+ 57caca84fde1d9f69e779c0e0421321dc1c65231 124698 php7.4-runkit7-dbgsym_4.0.0a6+ubuntu20.04~rc3_amd64.ddeb
+ cf0368e97f6b65525e7e35b5bb7cdc6456609783 38680 php7.4-runkit7_4.0.0a6+ubuntu20.04~rc3_amd64.deb
+ 6662bc54ec1ee768de05ae1f83f951cd9709d8f4 123846 php8.0-runkit7-dbgsym_4.0.0a6+ubuntu20.04~rc3_amd64.ddeb
+ 5b69db9e62fea110368723c3cb8934cf4f19972f 38302 php8.0-runkit7_4.0.0a6+ubuntu20.04~rc3_amd64.deb
+ b7d9cd2d9eb9bc1c8b985b167a0d4a92d90d4b84 124904 php8.1-runkit7-dbgsym_4.0.0a6+ubuntu20.04~rc3_amd64.ddeb
+ 241ac4831e6d7bac25f158acd3f7fea6bfc79252 38360 php8.1-runkit7_4.0.0a6+ubuntu20.04~rc3_amd64.deb
+ 5e7203eabc74e91b9097af5f5df6f2c48466f8d4 131430 php8.2-runkit7-dbgsym_4.0.0a6+ubuntu20.04~rc3_amd64.ddeb
+ c6c9b844f8df1e12bf7b7ffd39b78fa7672300eb 38762 php8.2-runkit7_4.0.0a6+ubuntu20.04~rc3_amd64.deb
+Checksums-Sha256:
+ 53112b163d58217c02b9b4a5b1d70d63ceacbec909a0fc5de82e7cac5209a4ec 875 php-runkit7_4.0.0a6+ubuntu20.04~rc3.dsc
+ af9c86d241c702028a81b25702a59a295728a8dab62856b522c13296990acd9d 155581 php-runkit7_4.0.0a6+ubuntu20.04~rc3.tar.gz
+ 96e0e3c274aff00ca04db67d26bd51e0f4f9382fcb2e00bb8f0a0000cabde250 3140 php-runkit7-all-dev_4.0.0a6+ubuntu20.04~rc3_all.deb
+ 421be86019a3e9db30fb1b678a339060280c6a19cf48fffe80fd988ce22d5b76 17687 php-runkit7_4.0.0a6+ubuntu20.04~rc3_amd64.buildinfo
+ 25cdeeccd6592c6a2884fe157b5020fe9f2b6fcd7c52406893f4bd68e6b201c9 3086 php-runkit7_4.0.0a6+ubuntu20.04~rc3_amd64.deb
+ 173e919c8e9fb9f788d6c148076472cc6ef376a27879a3433c196425b18d8ad9 118654 php7.2-runkit7-dbgsym_4.0.0a6+ubuntu20.04~rc3_amd64.ddeb
+ 1dfe589669990a9c7e5e2f645b5f68e8819952cb9de33a6dac8a17a15c0e6d06 38688 php7.2-runkit7_4.0.0a6+ubuntu20.04~rc3_amd64.deb
+ e22c7c43a44a34bc6748678fd125f81f8bb8fe994a7cf1ba112e08c8f28330c2 124224 php7.3-runkit7-dbgsym_4.0.0a6+ubuntu20.04~rc3_amd64.ddeb
+ 6b581a4960635bd184c8e9f83e16385ad331355d298d46b17d21444edf572487 38742 php7.3-runkit7_4.0.0a6+ubuntu20.04~rc3_amd64.deb
+ d54a7f3963217ea3f77bdcd18895ce4e3849ded4665ae73d3da5aa025e874fbc 124698 php7.4-runkit7-dbgsym_4.0.0a6+ubuntu20.04~rc3_amd64.ddeb
+ ef6c4ace86fc8412433e8fc79ab13d25e365d3ccb1591b4e7235b14ffc0ca1e6 38680 php7.4-runkit7_4.0.0a6+ubuntu20.04~rc3_amd64.deb
+ 2bc8e47867441cd0b3d5718b29c9596464dcd7bb07924cd3e32f6ead36ebd02a 123846 php8.0-runkit7-dbgsym_4.0.0a6+ubuntu20.04~rc3_amd64.ddeb
+ fd28d335249f8601235afcca1f22424854f7df2b0c97d51f555ce58e080184c2 38302 php8.0-runkit7_4.0.0a6+ubuntu20.04~rc3_amd64.deb
+ bb4a04fdb822f11b45ba3057a02f7a5bcb3e6c36d6b58f6999f85436f5d4bf93 124904 php8.1-runkit7-dbgsym_4.0.0a6+ubuntu20.04~rc3_amd64.ddeb
+ d00cda1c5775cf27cc55d46ff362a21a3437efd11cbed35a70dede76c818de8d 38360 php8.1-runkit7_4.0.0a6+ubuntu20.04~rc3_amd64.deb
+ 71b03b661c73416a64ef95417abc8c41e5383998c8f363577e142ed0a1e77566 131430 php8.2-runkit7-dbgsym_4.0.0a6+ubuntu20.04~rc3_amd64.ddeb
+ d092791e3f72f92de289b2de293b10ff8d9106baa7a42d9c114b409c6aff7014 38762 php8.2-runkit7_4.0.0a6+ubuntu20.04~rc3_amd64.deb
+Files:
+ 35de9485eaa0698a4e0705d0282e22ef 875 php optional php-runkit7_4.0.0a6+ubuntu20.04~rc3.dsc
+ d60b8de568ec291a3f94d37cab84a59f 155581 php optional php-runkit7_4.0.0a6+ubuntu20.04~rc3.tar.gz
+ 50cc0bd3b39972d6de08cf6aad33efe5 3140 php optional php-runkit7-all-dev_4.0.0a6+ubuntu20.04~rc3_all.deb
+ bed9e0c1ae3de0ad75acca28c5439310 17687 php optional php-runkit7_4.0.0a6+ubuntu20.04~rc3_amd64.buildinfo
+ b917651ea3762b9eb0d9ae32768b115f 3086 php optional php-runkit7_4.0.0a6+ubuntu20.04~rc3_amd64.deb
+ 5c9d1b5e202fa8414f64e0f7288ad491 118654 debug optional php7.2-runkit7-dbgsym_4.0.0a6+ubuntu20.04~rc3_amd64.ddeb
+ 599adb6d10aa4da84abc26beef6e176c 38688 php optional php7.2-runkit7_4.0.0a6+ubuntu20.04~rc3_amd64.deb
+ 53c0fa1ba67e173f6ec527275497be49 124224 debug optional php7.3-runkit7-dbgsym_4.0.0a6+ubuntu20.04~rc3_amd64.ddeb
+ c13c6577000e7d4d45f0af4f25c12aeb 38742 php optional php7.3-runkit7_4.0.0a6+ubuntu20.04~rc3_amd64.deb
+ 832465c4354a333b7bd68dd9ceadd4b8 124698 debug optional php7.4-runkit7-dbgsym_4.0.0a6+ubuntu20.04~rc3_amd64.ddeb
+ 522da78f13f2e0a17076a7e02caddd18 38680 php optional php7.4-runkit7_4.0.0a6+ubuntu20.04~rc3_amd64.deb
+ 2d42684f5d5821b9a90585e76324c4f6 123846 debug optional php8.0-runkit7-dbgsym_4.0.0a6+ubuntu20.04~rc3_amd64.ddeb
+ 6595612e33948f3b34c0127bfbb3dd45 38302 php optional php8.0-runkit7_4.0.0a6+ubuntu20.04~rc3_amd64.deb
+ d40f2b9cb1582682b77a0d8b723ce795 124904 debug optional php8.1-runkit7-dbgsym_4.0.0a6+ubuntu20.04~rc3_amd64.ddeb
+ ea811f5f1483da456754185aadd89d8c 38360 php optional php8.1-runkit7_4.0.0a6+ubuntu20.04~rc3_amd64.deb
+ 1e18889a1c3040bf7e6b81daedd334a0 131430 debug optional php8.2-runkit7-dbgsym_4.0.0a6+ubuntu20.04~rc3_amd64.ddeb
+ c283aa730a3e6737bd502f0c7f77d380 38762 php optional php8.2-runkit7_4.0.0a6+ubuntu20.04~rc3_amd64.deb
