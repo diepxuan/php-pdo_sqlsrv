@@ -5,4 +5,4 @@ set -e
 # set -u
 
 mkdir -p dists
-mv *.ddeb *.deb *.buildinfo *.changes *.dsc *.tar.xz *.tar.gz *.tar.* dists/
+cp *.ddeb *.deb *.buildinfo *.changes *.dsc *.tar.xz *.tar.gz *.tar.* dists/

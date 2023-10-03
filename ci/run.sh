@@ -46,7 +46,7 @@ INPUT_BUILDPACKAGE_OPTS="$INPUT_BUILDPACKAGE_OPTS -S"
 . $ci_dir/build_packages.sh
 end_group
 
-start_group "Building package source"
+start_group "Put packages"
 . $ci_dir/put_packages.sh
 end_group
 

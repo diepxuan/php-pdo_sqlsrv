@@ -42,7 +42,12 @@ jobs:
       - name: Move packages builded to dists
         run: |
           mkdir -p dists
-          mv *.ddeb *.deb *.buildinfo *.changes *.dsc *.tar.xz *.tar.gz *.tar.* dists/
+          cp *.ddeb *.deb *.buildinfo *.changes *.dsc *.tar.xz *.tar.gz *.tar.* dists/
+
+      - name: Configure Git
+        run : |
+          git config --local user.email "${{ secrets.email }}"
+          git config --local user.name "${{ github.repository_owner }}"
 
       - name: Update
         run: |
