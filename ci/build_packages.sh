@@ -14,6 +14,7 @@ if [ -n "$INPUT_HOST_ARCH" ]; then
     INPUT_BUILDPACKAGE_OPTS="$INPUT_BUILDPACKAGE_OPTS --host-arch=$INPUT_HOST_ARCH"
 fi
 
-cd -- "$INPUT_SOURCE_DIR"
+cd $source_dir
 # shellcheck disable=SC2086
 dpkg-buildpackage $INPUT_BUILDPACKAGE_OPTS
+cd -
