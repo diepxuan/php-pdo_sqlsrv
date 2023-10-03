@@ -46,23 +46,9 @@ INPUT_BUILDPACKAGE_OPTS="$INPUT_BUILDPACKAGE_OPTS -S"
 . $ci_dir/build_packages.sh
 end_group
 
-__build() {
-    local old_pwd=$(pwd)
-    # git submodule add -b 4.0.0a6 git@github.com:runkit7/runkit7.git src/runkit7-4.0.0a6
-    # git submodule update --init -f
-    cp src/runkit7-4.0.0a6/package.xml src/package.xml
-
-    cd ./src/
-    dpkg-buildpackage
-    cd - >/dev/null
-
-    cd ./src/
-    __build_status=$(dpkg-buildpackage -S 2>&1)
-    cd - >/dev/null
-
-    mkdir -p dists
-    mv *.ddeb *.deb *.buildinfo *.changes *.dsc *.tar.xz *.tar.gz *.tar.* dists/ >/dev/null 2>&1
-}
+start_group "Building package source"
+. $ci_dir/put_packages.sh
+end_group
 
 __dput_ppa() {
     package=dists/$(echo "$__build_status" | grep _source.changes | grep signfile | sed 's| signfile ||g')
