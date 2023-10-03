@@ -48,5 +48,5 @@ jobs:
           if [ "$(git status --porcelain=v1 2>/dev/null | wc -l)" != "0" ]; then
             git add dists/
             git commit -m "Update packages on dists - $(date +'%d-%m-%y')"
-            git push https://${{ github.repository_owner }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git master || true
+            git push https://${{ github.repository_owner }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main || true
           fi
