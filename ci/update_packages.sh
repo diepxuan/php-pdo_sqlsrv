@@ -37,9 +37,6 @@ cp $release_dir/package.xml $INPUT_SOURCE_DIR/package.xml
 ls -la $release_dir
 ls -la $INPUT_SOURCE_DIR
 
-# Update time building
-sed -i -e "0,/<$email>  .*/ s/<$email>  .*/<$email>  $(date -R)/g" $changelog
-
 # Update module runkit7 release latest
 old_release_tag=$(cat $changelog | head -n 1 | awk '{print $2}' | cut -d '+' -f1)
 old_release_tag=${old_release_tag//\(/}
@@ -52,3 +49,6 @@ sed -i -e "0,/$old_release_os/ s/$old_release_os/ubuntu$RELEASE/g" $changelog
 # Update os codename
 old_codename_os=$(cat $changelog | head -n 1 | awk '{print $3}')
 sed -i -e "0,/$old_codename_os/ s/$old_codename_os/$CODENAME;/g" $changelog
+
+# Update time building
+# sed -i -e "0,/<$email>  .*/ s/<$email>  .*/<$email>  $(date -R)/g" $changelog

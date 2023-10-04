@@ -72,14 +72,23 @@ jobs:
         run: bash ci/install_build_deps.sh
       - name: Updating build information
         run: bash ci/update_packages.sh
+      - name: Dynamically set SOURCE_DATE_EPOCH environment variable
+        run: echo "SOURCE_DATE_EPOCH=$(date -R)" >> $GITHUB_ENV
       - name: Building package binary
         run: bash ci/build_packages.sh
         env:
-          INPUT_BUILDPACKAGE_OPTS:
+          BUILDPACKAGE_OPTS: --force-sign -F
+          SOURCE_DATE_EPOCH: ${{ env.SOURCE_DATE_EPOCH }}
+          DEB_SIGN_KEYID: ${{ secrets.GPG_KEY_ID }}
+          GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
       - name: Building package source
         run: bash ci/build_packages.sh
+        if: ${{ false }}
         env:
-          INPUT_BUILDPACKAGE_OPTS: -S
+          BUILDPACKAGE_OPTS: --force-sign -S
+          SOURCE_DATE_EPOCH: ${{ env.SOURCE_DATE_EPOCH }}
+          DEB_SIGN_KEYID: ${{ secrets.GPG_KEY_ID }}
+          GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
       - name: Move packages to dists
         run: bash ci/move_packages.sh
       - name: Put package to Personal Package archives
@@ -95,6 +104,6 @@ jobs:
               git stash &&
               git pull --rebase &&
               git stash apply &&
-              # git push https://${{ github.repository_owner }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main
+              # git push https://${{ github.repository_owner }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main || true
               git push || true
           fi
