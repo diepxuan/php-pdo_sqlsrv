@@ -7,8 +7,5 @@ set -e
 
 cd $source_dir
 # shellcheck disable=SC2086
-__build_status=$(dpkg-buildpackage $BUILDPACKAGE_OPTS) 2>&1
+dpkg-buildpackage $BUILDPACKAGE_OPTS
 cd -
-
-package=$(echo "$__build_status" | grep _source.changes | grep signfile | sed 's| signfile ||g')
-[[ -n $package ]] && echo "SOURCEPACKAGE_PATH=$package" >>$GITHUB_ENV
