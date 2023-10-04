@@ -14,7 +14,7 @@ RELEASE=${DISTRIB_RELEASE:-${VERSION_ID}}
 RELEASE=${RELEASE:-$(echo $DISTRIB_DESCRIPTION | awk '{print $2}' | cut -d '.' -f 1,2)}
 RELEASE=${RELEASE:-$(echo $VERSION | awk '{print $1}' | cut -d '.' -f 1,2))}
 
-[[ $ID -eq 'debian' ]] && [[ $RELEASE -eq 11 ]] && RELEASE='20.04' && CODENAME=focal
+[[ "$ID" -eq "debian" ]] && [[ "$RELEASE" -eq "11" ]] && RELEASE='20.04' && CODENAME=focal
 
 # user evironment
 email=ductn@diepxuan.com
@@ -27,7 +27,7 @@ release_tag=$(basename $release_url)
 release_dir=$INPUT_SOURCE_DIR/$project-$release_tag
 
 rm -rf $release_dir
-git clone -b $release_tag -- https://github.com/$owner/$project.git $release_dir --depth=1
+git clone -b $release_tag -- https://github.com/$owner/$project.git $release_dir --depth 1
 
 cp $release_dir/package.xml $INPUT_SOURCE_DIR/package.xml
 ls -la $release_dir

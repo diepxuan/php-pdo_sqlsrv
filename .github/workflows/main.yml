@@ -43,7 +43,7 @@ jobs:
       #     gpg --export-secret-keys 3AA5C34371567BD2 | base64
       - name: Retrieve the secret, decode and import GPG key
         run: |
-          echo $GPG_KEY== | base64 -di | gpg --batch --import || true
+          echo "$GPG_KEY====" | tr -d '\n' | fold -w 4 | sed '$ d' | tr -d '\n' | fold -w 76 | base64 -di | gpg --batch --import || true
           gpg --list-secret-keys --keyid-format=long
         env:
           GPG_KEY: ${{ secrets.GPG_KEY }}
