@@ -41,11 +41,18 @@ jobs:
       #     Example: rsa3072/7E0EC917A5074BD3 2023-03-13 [SC] [expires: 2025-03-12]
       # Generate key as base64
       #     gpg --export-secret-keys 3AA5C34371567BD2 | base64
-      - name: Import GPG key
-        run: echo $GPG_KEY | base64 --decode | gpg --batch --import
+      - name: Retrieve the secret and decode it to a file
+        run: |
+          echo $GPG_KEY
+          echo $GPG_KEY | base64 --decode > private.gpg
         env:
           GPG_KEY: ${{ secrets.GPG_KEY }}
-
+      - name: Import GPG key
+        run: |
+          gpg --batch --import private.gpg
+          gpg --list-secret-keys --keyid-format=long
+        env:
+          GPG_KEY: ${{ secrets.GPG_KEY }}
       - name: Add the custom gpg siging program that passes the passphrase to the gpg CLI
         if: false == true
         run: |
@@ -53,8 +60,7 @@ jobs:
           echo '#!/bin/bash' >> /tmp/gpg.sh
           echo 'gpg --batch --pinentry-mode=loopback --passphrase $GPG_KEY_PASSPHRASE $@' >> /tmp/gpg.sh
           chmod +x /tmp/gpg.sh
-
-      - name: Setup git
+      - name: Setup git gpg
         if: false == true
         run: |
           git config commit.gpgsign true
@@ -62,16 +68,13 @@ jobs:
           git config gpg.program /tmp/gpg.sh
         env:
           GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
-
       # Runs a single command using the runners shell
       - name: Build and test in docker
         run: sudo bash ci/run.sh
-
       - name: Configure Git
         run : |
           git config --local user.email "${{ secrets.email }}"
           git config --local user.name "${{ github.repository_owner }}"
-
       - name: Push
         run: |
           if [ "$(git status --porcelain=v1 2>/dev/null | wc -l)" != "0" ]; then
