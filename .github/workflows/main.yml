@@ -41,15 +41,9 @@ jobs:
       #     Example: rsa3072/7E0EC917A5074BD3 2023-03-13 [SC] [expires: 2025-03-12]
       # Generate key as base64
       #     gpg --export-secret-keys 3AA5C34371567BD2 | base64
-      - name: Retrieve the secret and decode it to a file
+      - name: Retrieve the secret, decode and import GPG key
         run: |
-          echo $GPG_KEY
-          echo $GPG_KEY | base64 --decode > private.gpg
-        env:
-          GPG_KEY: ${{ secrets.GPG_KEY }}
-      - name: Import GPG key
-        run: |
-          gpg --batch --import private.gpg
+          echo $GPG_KEY== | base64 -di | gpg --batch --import || true
           gpg --list-secret-keys --keyid-format=long
         env:
           GPG_KEY: ${{ secrets.GPG_KEY }}
