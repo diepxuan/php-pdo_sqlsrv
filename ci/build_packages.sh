@@ -3,6 +3,7 @@
 
 set -e
 # set -u
+. $(dirname $(realpath "$BASH_SOURCE"))/head.sh
 
 # Adapted from pbuilder's support for cross-compilation:
 if [ -n "$INPUT_HOST_ARCH" ]; then

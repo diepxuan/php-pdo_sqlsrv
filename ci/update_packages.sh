@@ -3,6 +3,7 @@
 
 set -e
 # set -u
+. $(dirname $(realpath "$BASH_SOURCE"))/head.sh
 
 [[ -f /etc/os-release ]] && . /etc/os-release
 [[ -f /etc/lsb-release ]] && . /etc/lsb-release

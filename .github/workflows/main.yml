@@ -53,12 +53,12 @@ jobs:
           echo '#!/bin/bash' >> /tmp/gpg.sh
           echo 'gpg --batch --pinentry-mode=loopback --passphrase $GPG_KEY_PASSPHRASE $@' >> /tmp/gpg.sh
           chmod +x /tmp/gpg.sh
+          git config gpg.program /tmp/gpg.sh
       - name: Configure Git gpg
         # if: false == true
         run: |
           git config commit.gpgsign true
           git config user.signingkey $GPG_KEY_ID
-          # git config gpg.program /tmp/gpg.sh
         env:
           GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
       - name: Configure Git
@@ -68,9 +68,20 @@ jobs:
         env:
           GIT_COMMITTER_EMAIL: ${{ secrets.GIT_COMMITTER_EMAIL }}
           GIT_COMMITTER_NAME: ${{ github.repository_owner }}
-      # Runs a single command using the runners shell
-      - name: Build and test in docker
-        run: sudo bash ci/run.sh
+      - name: Installing build dependencies
+        run: bash ci/install_build_deps.sh
+      - name: Updating build information
+        run: bash ci/update_packages.sh
+      - name: Building package binary
+        run: bash ci/build_packages.sh
+        env:
+          INPUT_BUILDPACKAGE_OPTS:
+      - name: Building package source
+        run: bash ci/build_packages.sh
+        env:
+          INPUT_BUILDPACKAGE_OPTS: -S
+      - name: Move packages to dists
+        run: bash ci/move_packages.sh
       - name: Put package to Personal Package archives
         run: |
           __package=dists/$(ls dists/ | grep $(dpkg-scansources dists/ | grep .dsc | head -n 1 | awk '{print $3}' | sed 's|.dsc||g') | grep _source.changes)
@@ -79,6 +90,7 @@ jobs:
         run: |
           if [ "$(git status --porcelain=v1 2>/dev/null | wc -l)" != "0" ]; then
             git add dists/
+            git add src/debian/changelog
             git commit -m "Update packages on dists from ${{ matrix.operating-system }} at $(date +'%d-%m-%y')" &&
               # git push https://${{ github.repository_owner }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main ||
               git push ||
