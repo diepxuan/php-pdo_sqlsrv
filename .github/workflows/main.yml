@@ -31,9 +31,8 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
-
       # Create GPG key if not exists
       #     gpg --full-generate-key
       # List to select GPG key
@@ -54,22 +53,26 @@ jobs:
           echo '#!/bin/bash' >> /tmp/gpg.sh
           echo 'gpg --batch --pinentry-mode=loopback --passphrase $GPG_KEY_PASSPHRASE $@' >> /tmp/gpg.sh
           chmod +x /tmp/gpg.sh
-      - name: Setup git gpg
-        if: false == true
+      - name: Configure Git gpg
+        # if: false == true
         run: |
           git config commit.gpgsign true
           git config user.signingkey $GPG_KEY_ID
-          git config gpg.program /tmp/gpg.sh
+          # git config gpg.program /tmp/gpg.sh
+      - name: Configure Git
+        run : |
+          git config --local user.email "${{ secrets.GIT_COMMITTER_EMAIL }}"
+          git config --local user.name "${{ github.repository_owner }}"
         env:
           GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
       # Runs a single command using the runners shell
       - name: Build and test in docker
         run: sudo bash ci/run.sh
-      - name: Configure Git
-        run : |
-          git config --local user.email "${{ secrets.email }}"
-          git config --local user.name "${{ github.repository_owner }}"
-      - name: Push
+      - name: Put package to Personal Package archives
+        run: |
+          __package=dists/$(ls dists/ | grep $(dpkg-scansources dists/ | grep .dsc | head -n 1 | awk '{print $3}' | sed 's|.dsc||g') | grep _source.changes)
+          dput ppa:caothu91/ppa $__package
+      - name: Push repository
         run: |
           if [ "$(git status --porcelain=v1 2>/dev/null | wc -l)" != "0" ]; then
             git add dists/
