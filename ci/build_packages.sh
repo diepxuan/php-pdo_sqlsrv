@@ -17,5 +17,5 @@ fi
 
 cd $source_dir
 # shellcheck disable=SC2086
-dpkg-buildpackage $INPUT_BUILDPACKAGE_OPTS
+dpkg-buildpackage $INPUT_BUILDPACKAGE_OPTS 2>&1
 cd -
