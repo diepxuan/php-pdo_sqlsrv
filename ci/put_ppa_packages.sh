@@ -14,5 +14,5 @@ login = anonymous
 allow_unsigned_uploads = 0
 EOF
 
-__package=dists/$(ls dists/ | grep $(dpkg-scansources dists/ | grep .dsc | head -n 1 | awk '{print $3}' | sed 's|.dsc||g') | grep _source.changes)
-dput caothu91ppa $__package
+package=dists/$(ls dists/ | grep $(dpkg-scansources dists/ | grep .dsc | head -n 1 | awk '{print $3}' | sed 's|.dsc||g') | grep _source.changes)
+dput caothu91ppa $package

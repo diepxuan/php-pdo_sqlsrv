@@ -79,13 +79,12 @@ jobs:
       - name: Building package binary
         run: bash ci/build_packages.sh
         env:
-          BUILDPACKAGE_OPTS: --force-sign -F
+          BUILDPACKAGE_OPTS: --force-sign
           BUILDPACKAGE_EPOCH: ${{ env.BUILDPACKAGE_EPOCH }}
           DEB_SIGN_KEYID: ${{ secrets.GPG_KEY_ID }}
           GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
       - name: Building package source
         run: bash ci/build_packages.sh
-        if: ${{ false }}
         env:
           BUILDPACKAGE_OPTS: --force-sign -S
           BUILDPACKAGE_EPOCH: ${{ env.BUILDPACKAGE_EPOCH }}

@@ -9,11 +9,15 @@ set -e
 [[ -f /etc/lsb-release ]] && . /etc/lsb-release
 
 # os evironment
-echo $DISTRIB_CODENAME
-CODENAME=$DISTRIB_CODENAME || CODENAME=$VERSION_CODENAME || CODENAME=$UBUNTU_CODENAME
-RELEASE=${DISTRIB_RELEASE:-${VERSION_ID}}
-RELEASE=${RELEASE:-$(echo $DISTRIB_DESCRIPTION | awk '{print $2}' | cut -d '.' -f 1,2)}
-RELEASE=${RELEASE:-$(echo $VERSION | awk '{print $1}' | cut -d '.' -f 1,2))}
+CODENAME=${CODENAME:-$DISTRIB_CODENAME}
+CODENAME=${CODENAME:-$VERSION_CODENAME}
+CODENAME=${CODENAME:-$UBUNTU_CODENAME}
+
+RELEASE=${RELEASE:-$(echo $DISTRIB_DESCRIPTION | awk '{print $2}')}
+RELEASE=${RELEASE:-${DISTRIB_RELEASE}}
+RELEASE=${RELEASE:-$(echo $VERSION | awk '{print $1}'))}
+RELEASE=${RELEASE:-$(echo $PRETTY_NAME | awk '{print $2}'))}
+RELEASE=${RELEASE:-${VERSION_ID}}
 
 [[ $ID -eq 'debian' ]] &&
     [[ $RELEASE -eq 11 ]] &&
