@@ -83,9 +83,7 @@ jobs:
       - name: Move packages to dists
         run: bash ci/move_packages.sh
       - name: Put package to Personal Package archives
-        run: |
-          __package=dists/$(ls dists/ | grep $(dpkg-scansources dists/ | grep .dsc | head -n 1 | awk '{print $3}' | sed 's|.dsc||g') | grep _source.changes)
-          dput ppa:caothu91/ppa $__package
+        run: bash ci/put_ppa_packages.sh
       - name: Push repository
         run: |
           if [ "$(git status --porcelain=v1 2>/dev/null | wc -l)" != "0" ]; then
