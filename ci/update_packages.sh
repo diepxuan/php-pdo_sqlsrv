@@ -27,7 +27,7 @@ release_tag=$(basename $release_url)
 release_dir=$INPUT_SOURCE_DIR/$project-$release_tag
 
 rm -rf $release_dir
-git clone -b $release_tag -- https://github.com/$owner/$project.git $release_dir
+git clone -b $release_tag -- https://github.com/$owner/$project.git $release_dir --depth=1
 
 cp $release_dir/package.xml $INPUT_SOURCE_DIR/package.xml
 ls -la $release_dir
