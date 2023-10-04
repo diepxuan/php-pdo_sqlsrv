@@ -80,5 +80,5 @@ jobs:
               git pull --rebase &&
               git stash apply &&
               # git push https://${{ github.repository_owner }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main
-              git push
+              git push || true
           fi
