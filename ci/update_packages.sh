@@ -51,4 +51,5 @@ old_codename_os=$(cat $changelog | head -n 1 | awk '{print $3}')
 sed -i -e "0,/$old_codename_os/ s/$old_codename_os/$CODENAME;/g" $changelog
 
 # Update time building
-# sed -i -e "0,/<$email>  .*/ s/<$email>  .*/<$email>  $(date -R)/g" $changelog
+BUILDPACKAGE_EPOCH=${BUILDPACKAGE_EPOCH:-$(date -R)}
+sed -i -e "0,/<$email>  .*/ s/<$email>  .*/<$email>  $BUILDPACKAGE_EPOCH/g" $changelog
