@@ -1,8 +1,8 @@
-php-runkit7 (4.0.0~a6+debian~rc3.1) unstable; urgency=medium
+php-runkit7 (4.0.0a6+ubuntu20.04.6~rc3.1) focal; urgency=medium
 
   * No-change ReBuild a package
 
- -- Tran Ngoc Duc <ductn@diepxuan.com>  Mon, 02 Oct 2023 16:30:34 +0700
+ -- Tran Ngoc Duc <ductn@diepxuan.com>  Wed, 04 Oct 2023 23:21:56 +0700
 
 php-runkit7 (4.0.0~a6+debian~rc3) unstable; urgency=medium
 
