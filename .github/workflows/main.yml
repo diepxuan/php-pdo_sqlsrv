@@ -94,6 +94,8 @@ jobs:
         run: bash ci/move_packages.sh
       - name: Put package to Personal Package archives
         run: bash ci/put_ppa_packages.sh
+        env:
+          SOURCEPACKAGE_PATH: ${{ env.SOURCEPACKAGE_PATH }}
       - name: Push repository
         run: |
           if [ "$(git status --porcelain=v1 2>/dev/null | wc -l)" != "0" ]; then

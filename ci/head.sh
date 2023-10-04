@@ -29,8 +29,3 @@ source_dir=$(realpath ./$INPUT_SOURCE_DIR)
 dists_dir=$(realpath ./dists)
 ci_dir=$(dirname $(realpath "$BASH_SOURCE"))
 pwd_dir=$(pwd || dirname $(realpath "$0") || realpath .)
-
-# __dput_ppa() {
-#     package=dists/$(echo "$__build_status" | grep _source.changes | grep signfile | sed 's| signfile ||g')
-#     dput ductn-ppa $package
-# }

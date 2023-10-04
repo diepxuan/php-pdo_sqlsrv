@@ -14,14 +14,14 @@ CODENAME=${CODENAME:-$VERSION_CODENAME}
 CODENAME=${CODENAME:-$UBUNTU_CODENAME}
 
 RELEASE=${RELEASE:-$(echo $DISTRIB_DESCRIPTION | awk '{print $2}')}
+RELEASE=${RELEASE:-$(echo $VERSION | awk '{print $1}')}
+RELEASE=${RELEASE:-$(echo $PRETTY_NAME | awk '{print $2}')}
 RELEASE=${RELEASE:-${DISTRIB_RELEASE}}
-RELEASE=${RELEASE:-$(echo $VERSION | awk '{print $1}'))}
-RELEASE=${RELEASE:-$(echo $PRETTY_NAME | awk '{print $2}'))}
 RELEASE=${RELEASE:-${VERSION_ID}}
 
 [[ $ID -eq 'debian' ]] &&
     [[ $RELEASE -eq 11 ]] &&
-    RELEASE=20.04 &&
+    RELEASE=20.04.6 &&
     CODENAME=focal
 
 # user evironment
@@ -42,8 +42,7 @@ ls -la $release_dir
 ls -la $INPUT_SOURCE_DIR
 
 # Update module runkit7 release latest
-old_release_tag=$(cat $changelog | head -n 1 | awk '{print $2}' | cut -d '+' -f1)
-old_release_tag=${old_release_tag//\(/}
+old_release_tag=$(cat $changelog | head -n 1 | awk '{print $2}' | cut -d '+' -f1 | sed 's|[()]||g')
 sed -i -e "0,/$old_release_tag/ s/$old_release_tag/$release_tag/g" $changelog
 
 # Update os release latest
