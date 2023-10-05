@@ -9,9 +9,9 @@ env() {
     param=$1
     value=$2
     if [ "$(cat $GITHUB_ENV | grep $param= 2>/dev/null | wc -l)" != "0" ]; then
-        echo "$param=$value" >>$GITHUB_ENV
-    else
         sed -i "s|$param=.*|$param=$value|" $GITHUB_ENV
+    else
+        echo "$param=$value" >>$GITHUB_ENV
     fi
 }
 
