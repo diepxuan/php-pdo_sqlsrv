@@ -8,27 +8,6 @@ set -e
 [[ -f /etc/os-release ]] && . /etc/os-release
 [[ -f /etc/lsb-release ]] && . /etc/lsb-release
 
-# os evironment
-CODENAME=${CODENAME:-$DISTRIB_CODENAME}
-CODENAME=${CODENAME:-$VERSION_CODENAME}
-CODENAME=${CODENAME:-$UBUNTU_CODENAME}
-
-RELEASE=${RELEASE:-$(echo $DISTRIB_DESCRIPTION | awk '{print $2}')}
-RELEASE=${RELEASE:-$(echo $VERSION | awk '{print $1}')}
-RELEASE=${RELEASE:-$(echo $PRETTY_NAME | awk '{print $2}')}
-RELEASE=${RELEASE:-${DISTRIB_RELEASE}}
-RELEASE=${RELEASE:-${VERSION_ID}}
-
-DISTRIB=${DISTRIB:-$DISTRIB_ID}
-DISTRIB=${DISTRIB:-$ID}
-DISTRIB=$(echo "$DISTRIB" | awk '{print tolower($0)}')
-
-# user evironment
-email=ductn@diepxuan.com
-changelog=$INPUT_SOURCE_DIR/debian/changelog
-
-# plugin
-owner=runkit7 project=runkit7
 release_url=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/$owner/$project/releases/latest)
 release_tag=$(basename $release_url)
 release_dir=$INPUT_SOURCE_DIR/$project-$release_tag

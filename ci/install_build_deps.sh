@@ -16,13 +16,6 @@ Acquire::Languages "none";
 quiet "yes";
 EOF
 
-# Adapted from pbuilder's support for cross-compilation:
-[[ -z $INPUT_HOST_ARCH ]] || if [ -n "$INPUT_HOST_ARCH" ]; then
-    dpkg --add-architecture "$INPUT_HOST_ARCH"
-    INPUT_EXTRA_BUILD_DEPS="$INPUT_EXTRA_BUILD_DEPS crossbuild-essential-$INPUT_HOST_ARCH libc-dev:$INPUT_HOST_ARCH"
-    printf 'APT::Get::Host-Architecture "%s";\n' "$INPUT_HOST_ARCH" | sudo tee -a "$APT_CONF_FILE"
-fi
-
 # debconf has priority “required” and is indirectly depended on by some
 # essential packages. It is reasonably safe to blindly assume it is installed.
 printf "man-db man-db/auto-update boolean false\n" | sudo debconf-set-selections
