@@ -19,10 +19,9 @@ RELEASE=${RELEASE:-$(echo $PRETTY_NAME | awk '{print $2}')}
 RELEASE=${RELEASE:-${DISTRIB_RELEASE}}
 RELEASE=${RELEASE:-${VERSION_ID}}
 
-[[ $ID -eq 'debian' ]] &&
-    [[ $RELEASE -eq 11 ]] &&
-    RELEASE=20.04.6 &&
-    CODENAME=focal
+DISTRIB=${DISTRIB:-$DISTRIB_ID}
+DISTRIB=${DISTRIB:-$ID}
+DISTRIB=$(echo "$DISTRIB" | awk '{print tolower($0)}')
 
 # user evironment
 email=ductn@diepxuan.com
@@ -47,7 +46,7 @@ sed -i -e "0,/$old_release_tag/ s/$old_release_tag/$release_tag/g" $changelog
 
 # Update os release latest
 old_release_os=$(cat $changelog | head -n 1 | awk '{print $2}' | cut -d '+' -f2 | cut -d '~' -f1)
-sed -i -e "0,/$old_release_os/ s/$old_release_os/ubuntu$RELEASE/g" $changelog
+sed -i -e "0,/$old_release_os/ s/$old_release_os/${DISTRIB}${RELEASE}/g" $changelog
 
 # Update os codename
 old_codename_os=$(cat $changelog | head -n 1 | awk '{print $3}')
