@@ -1,5 +1,5 @@
-php-runkit7 (4.0.0a6+ubuntu22.04.3~rc3.3) jammy; urgency=medium
+php-runkit7 (4.0.0a6+ubuntu20.04.6~rc3.3) focal; urgency=medium
 
   * No-change ReBuild a package
 
- -- Tran Ngoc Duc <ductn@diepxuan.com>  Thu, 05 Oct 2023 14:58:20 +0700
+ -- Tran Ngoc Duc <ductn@diepxuan.com>  Thu, 05 Oct 2023 16:00:04 +0700
