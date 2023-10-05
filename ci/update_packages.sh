@@ -5,9 +5,6 @@ set -e
 # set -u
 . $(dirname $(realpath "$BASH_SOURCE"))/head.sh
 
-[[ -f /etc/os-release ]] && . /etc/os-release
-[[ -f /etc/lsb-release ]] && . /etc/lsb-release
-
 release_url=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/$owner/$project/releases/latest)
 release_tag=$(basename $release_url)
 release_dir=$INPUT_SOURCE_DIR/$project-$release_tag

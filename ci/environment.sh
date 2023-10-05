@@ -38,6 +38,8 @@ env changelog $INPUT_SOURCE_DIR/debian/changelog
 env owner runkit7
 env project runkit7
 
+[[ -f /etc/os-release ]] && . /etc/os-release
+[[ -f /etc/lsb-release ]] && . /etc/lsb-release
 # os evironment
 CODENAME=${CODENAME:-$DISTRIB_CODENAME}
 CODENAME=${CODENAME:-$VERSION_CODENAME}
