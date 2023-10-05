@@ -1,0 +1,96 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Thu, 05 Oct 2023 14:58:20 +0700
+Source: php-runkit7
+Binary: php-runkit7 php-runkit7-all-dev php7.2-runkit7 php7.3-runkit7 php7.4-runkit7 php8.0-runkit7 php8.1-runkit7 php8.2-runkit7
+Built-For-Profiles: noudeb
+Architecture: source all amd64
+Version: 4.0.0a6+ubuntu22.04.3~rc3.3
+Distribution: jammy
+Urgency: medium
+Maintainer: Tyson Andre <tandre@php.net>
+Changed-By: Tran Ngoc Duc <ductn@diepxuan.com>
+Description:
+ php-runkit7 - Replace, rename, and remove user defined
+ php-runkit7-all-dev - Replace, rename, and remove user defined
+ php7.2-runkit7 - Replace, rename, and remove user defined
+ php7.3-runkit7 - Replace, rename, and remove user defined
+ php7.4-runkit7 - Replace, rename, and remove user defined
+ php8.0-runkit7 - Replace, rename, and remove user defined
+ php8.1-runkit7 - Replace, rename, and remove user defined
+ php8.2-runkit7 - Replace, rename, and remove user defined
+Changes:
+ php-runkit7 (4.0.0a6+ubuntu22.04.3~rc3.3) jammy; urgency=medium
+ .
+   * No-change ReBuild a package
+Checksums-Sha1:
+ 5457599a4d5398578dffa6af4f0e08ada0b31b02 1600 php-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3.dsc
+ 37e22728fbfbefb74146d6da539a24f0f8cb7308 161066 php-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3.tar.gz
+ b2fa35083c35e5f7dae2ff01c6221f54b48686a8 2726 php-runkit7-all-dev_4.0.0a6+ubuntu22.04.3~rc3.3_all.deb
+ 3776e2b48b76836fd4496cb9f6f9b01554c8761b 19043 php-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.buildinfo
+ 4c0e219a080290b35d5496fe7c403002ec4aa778 2672 php-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.deb
+ 4e6caa229187549e4a0f8daaf76a7f90daccc43d 107852 php7.2-runkit7-dbgsym_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.ddeb
+ 124aa50a8caae3e38625d3c04708945517ca910f 38304 php7.2-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.deb
+ 47264c1a7ce4526eaf87a1942113c2d652519d74 112488 php7.3-runkit7-dbgsym_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.ddeb
+ 1528d2215e956f59b1b9de158538792eba09c134 38242 php7.3-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.deb
+ deaaf9f49f3a4c3e10269b3bc065b8efe6061018 113852 php7.4-runkit7-dbgsym_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.ddeb
+ e4a6667de45770e7ea885afb83df1e39481fe591 38236 php7.4-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.deb
+ f1b95868b40641185208a4562a55e9cfab43109b 116070 php8.0-runkit7-dbgsym_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.ddeb
+ f44648b6354c01040e8d70064bca66487d6e323c 37834 php8.0-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.deb
+ 25fbc3cc9baf60b299dfccb560b5218e25736e1f 117262 php8.1-runkit7-dbgsym_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.ddeb
+ 0c23a23578f8004561c1a18090cc13555468e53d 37890 php8.1-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.deb
+ fd49e33da95084a242b9f42cf4444cf2eb537478 121446 php8.2-runkit7-dbgsym_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.ddeb
+ 881fb10641b40144864e951019325006227f539d 38518 php8.2-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.deb
+Checksums-Sha256:
+ 665ab0711a4d63fce208e042ae97980c2248b1fc114be8f87bc63a6125032670 1600 php-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3.dsc
+ 1245e5b8fd606a58df89d42516a13187eea9bf017a8c9f456331890cbcec4df9 161066 php-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3.tar.gz
+ 41c25923cd9be813cf768846428c905a1cd750fc1c6eb36fa7e9bbdcf019d247 2726 php-runkit7-all-dev_4.0.0a6+ubuntu22.04.3~rc3.3_all.deb
+ 23ab181235a96cc61f48b6e972505a211bcf72bf9dd53ab909eb0083db331d62 19043 php-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.buildinfo
+ 253a0d355b036cc4df6df1ae1b6b38eb1712f597e792eac46922276acf2331d6 2672 php-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.deb
+ dee942e265ad217bd6f05747cc7caa3109985bdb5421140e1f4cda5215aef831 107852 php7.2-runkit7-dbgsym_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.ddeb
+ 89f2eaacb8b841b52119f8abd5b9b628ea9b3b9047647fd0736b6073298a7d3f 38304 php7.2-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.deb
+ ec28119c77a50f2526af6f806e23a951bac572cf64b410daad82ec683f62fad1 112488 php7.3-runkit7-dbgsym_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.ddeb
+ 941717aa5ed92046987d2b89fb2235f16fffa1841c93be53c8c7a62747a3845a 38242 php7.3-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.deb
+ deb6a15fd5a904b9ae47b261cd9239716c5b4ce176459d2016742da757615a8f 113852 php7.4-runkit7-dbgsym_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.ddeb
+ 4db12f2afccf44165c4dd9c3303231ba373fedfbb935feeaffb29e81fac63a46 38236 php7.4-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.deb
+ 64b1af5f66769c13ee8ceea966efc8fc29492642b238a8a0b65b8cd34391c9c4 116070 php8.0-runkit7-dbgsym_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.ddeb
+ d514a280bee5bfe73f1f588b18632130060d11a69e0105fb5aa8ae3d8c245eda 37834 php8.0-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.deb
+ d6dc7c09c1a5877844f0a758779332a0d3cbf4b01350bc59561f769dfe31c15f 117262 php8.1-runkit7-dbgsym_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.ddeb
+ 45b4c37533bfe382817a7e7b7d11ef14727d8e8e0927cf18123df2328862300c 37890 php8.1-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.deb
+ 18cb0e117a13ff3a07a0699c428736444f59dc2593ab865d01ab03d230a0df64 121446 php8.2-runkit7-dbgsym_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.ddeb
+ f944c3daf366198f3c5b031dc4ce9948de5639894d07d0897b202b39b438eee2 38518 php8.2-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.deb
+Files:
+ 0ddef019fb95a9f0cf00553bdd9afcc6 1600 php optional php-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3.dsc
+ 2a770ebe4076f84910ffccd5251f266f 161066 php optional php-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3.tar.gz
+ 75e0538c3aae923a879a0846381e1801 2726 php optional php-runkit7-all-dev_4.0.0a6+ubuntu22.04.3~rc3.3_all.deb
+ d299ae51e5987624ee9ffc832c3bf2a8 19043 php optional php-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.buildinfo
+ 5021279e970c3803988fe9b9f11e0578 2672 php optional php-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.deb
+ 257fed122a716905e2fb59443a1cd1e1 107852 debug optional php7.2-runkit7-dbgsym_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.ddeb
+ 4121b542db5f8a8e93627fab751d240d 38304 php optional php7.2-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.deb
+ 5cc8cfe85f121366fd74b9996fb875c9 112488 debug optional php7.3-runkit7-dbgsym_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.ddeb
+ ebe050a26817e7296f9ebc146027eb16 38242 php optional php7.3-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.deb
+ 372157cd0807bd1f10c9dc8899a9863e 113852 debug optional php7.4-runkit7-dbgsym_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.ddeb
+ 9970274d295cbddefd974b78c7e70cb7 38236 php optional php7.4-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.deb
+ e402d5dc8eb491ff6c097a5823b28e6c 116070 debug optional php8.0-runkit7-dbgsym_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.ddeb
+ 83ea518aaa7737ce334ffa60eced3f65 37834 php optional php8.0-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.deb
+ 89c588aa17492e6b0d0eef0eeafebf5d 117262 debug optional php8.1-runkit7-dbgsym_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.ddeb
+ 8473db2b8e11c0bf7c79fc482ac0d8bd 37890 php optional php8.1-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.deb
+ bf4e4fe128369a0233265f9fff38f828 121446 debug optional php8.2-runkit7-dbgsym_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.ddeb
+ 1c8797c6c45d9abf28b3b0266bbfcce2 38518 php optional php8.2-runkit7_4.0.0a6+ubuntu22.04.3~rc3.3_amd64.deb
+
+-----BEGIN PGP SIGNATURE-----
+
+iQGzBAEBCgAdFiEEyL1dbGOOihGTiSkmfg7JF6UHS9MFAmUebkAACgkQfg7JF6UH
+S9MdPwv+KmOZEsrQIDFYk42Dhj8gyCgPb1Fp/xXQ4ZAvbccRTLn2pou0RIViL4XA
+tN7eeHcDsGy0i6eiKrnTm+GJojvwsgZaxdhmaeHEg3r9/nUgww8VZNVWpMpa6G5D
+t9CM7PkQKYh5tjsWx7K2RjSnVFKbHtVz8YGbVzElB9rQBdg2+ySOqnnT6rDR0HwB
+E773FkY1xmha33w6f1JkQzFqK2q+SGHLIR/LwUS7oG95lRknECWp5ceSf/TPSSKB
+4dT4ezRLBFzkML+IbMn2J39DbM7+5T3tI9uJAsrLAn27rLOERI8NPgm4o4pRHuJg
+q3B7B1p+dl4w6STEE0a+xCVkbFMWfWiAK0kdk5koasbPpCfAYZSscxgRXfmyhGff
+c/ZYpdKFgxfRwx/bX4mTnk5ncr3BYvwsg1fsP65FZ7zns0V7h1HxI3N87ydHIwkD
+JCHC2btoa9sGkpFV71t1aLRJvK3c5mzil8BJVaWzNi+cIKnmjxqcJaEMLvyl5vzv
+U2UwIgRj
+=mthn
+-----END PGP SIGNATURE-----
