@@ -71,6 +71,7 @@ jobs:
         run : |
           git config --local user.email "$GIT_COMMITTER_EMAIL"
           git config --local user.name "$GIT_COMMITTER_NAME"
+          git config --local pull.rebase true
         env:
           GIT_COMMITTER_EMAIL: ${{ secrets.GIT_COMMITTER_EMAIL }}
           GIT_COMMITTER_NAME: ${{ github.repository_owner }}
