@@ -1,0 +1,114 @@
+# Runs tests and verifies that the package can be built.
+name: Build
+
+# Controls when the action will run.
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**.md'
+      - 'dists/**'
+  pull_request:
+    branches: [main]
+    paths-ignore:
+      - '**.md'
+      - 'dists/**'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    runs-on: ${{matrix.operating-system}}
+    strategy:
+      fail-fast: false
+      matrix:
+        operating-system: [ubuntu-22.04, ubuntu-20.04]
+        # php-versions: ['5.3', '5.4', '5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      # Create GPG key if not exists
+      #     gpg --full-generate-key
+      # List to select GPG key
+      #     gpg --list-secret-keys --keyid-format=long
+      #     Example: rsa3072/7E0EC917A5074BD3 2023-03-13 [SC] [expires: 2025-03-12]
+      # Generate key as base64
+      #     gpg --export-secret-keys 3AA5C34371567BD2 | base64
+      - name: Dynamically set BUILDPACKAGE_EPOCH environment variable
+        run: |
+          sudo timedatectl set-timezone Asia/Ho_Chi_Minh
+          echo "BUILDPACKAGE_EPOCH=$(date -R)" >> $GITHUB_ENV
+      - name: Generate environment
+        run: bash ci/environment.sh
+      - name: Retrieve the secret, decode and import GPG key
+        run: |
+          echo "$GPG_KEY====" | tr -d '\n' | fold -w 4 | sed '$ d' | tr -d '\n' | fold -w 76 | base64 -di | gpg --batch --import || true
+          gpg --list-secret-keys --keyid-format=long
+        env:
+          GPG_KEY: ${{ secrets.GPG_KEY }}
+      - name: Add the custom gpg siging program that passes the passphrase to the gpg CLI
+        if: false == true
+        run: |
+          rm -rf /tmp/gpg.sh
+          echo '#!/bin/bash' >> /tmp/gpg.sh
+          echo 'gpg --batch --pinentry-mode=loopback --passphrase $GPG_KEY_PASSPHRASE $@' >> /tmp/gpg.sh
+          chmod +x /tmp/gpg.sh
+          git config gpg.program /tmp/gpg.sh
+      - name: Configure Git gpg
+        # if: false == true
+        run: |
+          git config commit.gpgsign true
+          git config user.signingkey $GPG_KEY_ID
+        env:
+          GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
+      - name: Configure Git
+        run : |
+          git config --local user.email "$GIT_COMMITTER_EMAIL"
+          git config --local user.name "$GIT_COMMITTER_NAME"
+          git config --local pull.rebase true
+        env:
+          GIT_COMMITTER_EMAIL: ${{ secrets.GIT_COMMITTER_EMAIL }}
+          GIT_COMMITTER_NAME: ${{ github.repository_owner }}
+      - name: Installing build dependencies
+        run: bash ci/install_build_deps.sh
+      - name: Updating build information
+        run: bash ci/update_packages.sh
+      - name: Building package binary
+        run: bash ci/build_packages.sh
+        env:
+          BUILDPACKAGE_OPTS: --force-sign
+          BUILDPACKAGE_EPOCH: ${{ env.BUILDPACKAGE_EPOCH }}
+          DEB_SIGN_KEYID: ${{ secrets.GPG_KEY_ID }}
+          GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
+      - name: Building package source
+        run: bash ci/build_packages.sh
+        env:
+          BUILDPACKAGE_OPTS: --force-sign -S
+          BUILDPACKAGE_EPOCH: ${{ env.BUILDPACKAGE_EPOCH }}
+          DEB_SIGN_KEYID: ${{ secrets.GPG_KEY_ID }}
+          GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
+      - name: Move packages to dists
+        run: bash ci/move_packages.sh
+      - name: Put package to Personal Package archives
+        run: bash ci/put_ppa_packages.sh
+      - name: Push repository
+        if: false == true
+        run: |
+          if [ "$(git status --porcelain=v1 2>/dev/null | wc -l)" != "0" ]; then
+            git add dists/
+            git add src/debian/changelog
+            git commit -m "Update packages on dists from ${{ matrix.operating-system }} at $(date +'%d-%m-%y')" &&
+              # git push https://${{ github.repository_owner }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main ||
+              git push ||
+              git stash &&
+              git pull --rebase &&
+              git stash apply &&
+              # git push https://${{ github.repository_owner }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main || true
+              git push || true
+          fi

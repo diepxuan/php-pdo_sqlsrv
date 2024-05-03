@@ -1,0 +1,78 @@
+Source: php-runkit7
+Priority: optional
+Maintainer: Tyson Andre <tandre@php.net>
+Uploaders: Tran Ngoc Duc <ductn@diepxuan.com>
+Build-Depends: debhelper-compat (= 12),
+               debhelper (>= 10~),
+               dh-php (>= 4~),
+               php-all-dev
+Section: php
+Standards-Version: 2.0.1
+Homepage: https://pecl.php.net/package/runkit7
+
+Package: php-runkit7
+Architecture: any
+Pre-Depends: php-common (>= 2:69~)
+Depends: ${misc:Depends},
+         ${pecl:Depends},
+         ${php:Depends},
+         ${shlibs:Depends}
+Recommends: ghostscript,
+            ttf-dejavu-core,
+            ${pecl:Recommends}
+Conflicts: ${pecl:Conflicts}
+Provides: ${pecl:Provides},
+          ${php:Provides}
+Breaks: ${pecl:Breaks}
+Replaces: ${pecl:Replaces}
+Suggests: ${pecl:Suggests}
+Description: Replace, rename, and remove user defined
+  functions, methods, and constants.
+  .
+  Define customized superglobal variables for general
+  purpose use.
+
+Package: php-runkit7-all-dev
+Architecture: all
+Pre-Depends: php-common (>= 2:69~)
+Depends: ${misc:Depends},
+         ${pecl:Depends},
+         ${php:Depends},
+         ${shlibs:Depends}
+Recommends: ghostscript,
+            ttf-dejavu-core,
+            ${pecl:Recommends}
+Conflicts: ${pecl:Conflicts}
+Provides: ${pecl:Provides},
+          ${php:Provides}
+Breaks: ${pecl:Breaks}
+Replaces: ${pecl:Replaces}
+Suggests: ${pecl:Suggests}
+Description: Replace, rename, and remove user defined
+  functions, methods, and constants.
+  .
+  Define customized superglobal variables for general
+  purpose use.
+
+Package: php7.4-runkit7
+Architecture: any
+Pre-Depends: php-common (>= 2:69~)
+Depends: ${misc:Depends},
+         ${pecl:Depends},
+         ${php:Depends},
+         ${shlibs:Depends}
+Recommends: ghostscript,
+            ttf-dejavu-core,
+            ${pecl:Recommends}
+Conflicts: ${pecl:Conflicts}
+Provides: ${pecl:Provides},
+          ${php:Provides}
+Breaks: ${pecl:Breaks}
+Replaces: ${pecl:Replaces}
+Suggests: ${pecl:Suggests}
+Description: Replace, rename, and remove user defined
+  functions, methods, and constants.
+  .
+  Define customized superglobal variables for general
+  purpose use.
+

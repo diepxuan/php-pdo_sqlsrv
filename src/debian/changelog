@@ -1,0 +1,5 @@
+php-runkit7 (4.0.0a6+ubuntu20.04.6~rc3.4) focal; urgency=medium
+
+  * Enables ability to modify/rename/remove internal functions.
+
+ -- Tran Ngoc Duc <ductn@diepxuan.com>  Mon, 16 Oct 2023 15:39:23 +0700

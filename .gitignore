@@ -1,0 +1,17 @@
+*.tar
+*.tar.*
+*.jar
+*.exe
+*.msi
+*.zip
+*.tgz
+*.log
+*.log.*
+*.sig
+*_source.buildinfo
+*_source.changes
+*.dsc
+
+pkg/
+# src/
+# dists/

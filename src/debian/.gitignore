@@ -1,0 +1,10 @@
+files
+build
+
+.debhelper
+php*-runkit7.php
+!php-runkit7.php
+php-runkit7/
+php*-runkit7/
+php-runkit7-all-dev/
+*.substvars
