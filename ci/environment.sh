@@ -35,8 +35,8 @@ env email ductn@diepxuan.com
 env changelog $INPUT_SOURCE_DIR/debian/changelog
 
 # plugin
-env owner runkit7
-env project runkit7
+env owner sqlsrv
+env project sqlsrv
 
 [[ -f /etc/os-release ]] && . /etc/os-release
 [[ -f /etc/lsb-release ]] && . /etc/lsb-release

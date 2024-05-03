@@ -2,9 +2,9 @@ files
 build
 
 .debhelper
-php*-runkit7.php
-!php-runkit7.php
-php-runkit7/
-php*-runkit7/
-php-runkit7-all-dev/
+php*-sqlsrv.php
+!php-sqlsrv.php
+php-sqlsrv/
+php*-sqlsrv/
+php-sqlsrv-all-dev/
 *.substvars

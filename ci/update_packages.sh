@@ -16,7 +16,7 @@ cp $release_dir/package.xml $INPUT_SOURCE_DIR/package.xml
 ls -la $release_dir
 ls -la $INPUT_SOURCE_DIR
 
-# Update module runkit7 release latest
+# Update module sqlsrv release latest
 old_release_tag=$(cat $changelog | head -n 1 | awk '{print $2}' | cut -d '+' -f1 | sed 's|[()]||g')
 sed -i -e "0,/$old_release_tag/ s/$old_release_tag/$release_tag/g" $changelog
 
