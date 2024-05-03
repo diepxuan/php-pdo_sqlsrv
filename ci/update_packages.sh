@@ -18,7 +18,8 @@ sed -i -e "0,/$old_release_tag/ s/$old_release_tag/$release_tag/g" $changelog
 
 # Update os release latest
 old_release_os=$(cat $changelog | head -n 1 | awk '{print $2}' | cut -d '+' -f2 | sed 's|[()]||g')
-sed -i -e "0,/$old_release_os/ s/$old_release_os/${DISTRIB}${RELEASE}/g" $changelog
+# sed -i -e "0,/$old_release_os/ s/$old_release_os/${DISTRIB}${RELEASE}/g" $changelog
+sed -i -e "0,/$old_release_os/ s/$old_release_os//g" $changelog
 
 # Update os codename
 old_codename_os=$(cat $changelog | head -n 1 | awk '{print $3}')

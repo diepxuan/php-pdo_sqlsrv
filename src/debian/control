@@ -15,6 +15,7 @@ Pre-Depends: php-common (>= 2:69~)
 Depends: ${misc:Depends},
          ${pecl:Depends},
          ${php:Depends},
+         ${shlibs:Depends},
          msodbcsql18
 Recommends: ghostscript,
             ttf-dejavu-core,
@@ -37,6 +38,7 @@ Pre-Depends: php-common (>= 2:69~)
 Depends: ${misc:Depends},
          ${pecl:Depends},
          ${php:Depends},
+         ${shlibs:Depends},
          msodbcsql18
 Recommends: ghostscript,
             ttf-dejavu-core,
@@ -53,12 +55,13 @@ Description: Replace, rename, and remove user defined
   Define customized superglobal variables for general
   purpose use.
 
-Package: php7.4-sqlsrv
+Package: php8.1-sqlsrv
 Architecture: any
 Pre-Depends: php-common (>= 2:69~)
 Depends: ${misc:Depends},
          ${pecl:Depends},
          ${php:Depends},
+         ${shlibs:Depends},
          msodbcsql18
 Recommends: ghostscript,
             ttf-dejavu-core,
