@@ -1,4 +1,4 @@
-php-sqlsrv (4.0.0a6+ubuntu20.04.6~rc3.4) focal; urgency=medium
+php-sqlsrv (4.0.0a6+ubuntu20.04.6) focal; urgency=medium
 
   * Enables ability to modify/rename/remove internal functions.
 

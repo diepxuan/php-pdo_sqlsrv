@@ -6,7 +6,7 @@ set -e
 . $(dirname $(realpath "$BASH_SOURCE"))/head.sh
 
 release_url=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/$owner/$project/releases/latest)
-release_tag=$(basename $release_url)
+release_tag=$(basename $release_url | sed 's/^[a-z]*//g')
 release_dir=$INPUT_SOURCE_DIR/$project-$release_tag
 
 rm -rf $release_dir
@@ -21,7 +21,7 @@ old_release_tag=$(cat $changelog | head -n 1 | awk '{print $2}' | cut -d '+' -f1
 sed -i -e "0,/$old_release_tag/ s/$old_release_tag/$release_tag/g" $changelog
 
 # Update os release latest
-old_release_os=$(cat $changelog | head -n 1 | awk '{print $2}' | cut -d '+' -f2 | cut -d '~' -f1)
+old_release_os=$(cat $changelog | head -n 1 | awk '{print $2}' | cut -d '+' -f2 | sed 's|[()]||g')
 sed -i -e "0,/$old_release_os/ s/$old_release_os/${DISTRIB}${RELEASE}/g" $changelog
 
 # Update os codename
