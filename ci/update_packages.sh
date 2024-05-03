@@ -5,7 +5,7 @@ set -e
 # set -u
 . $(dirname $(realpath "$BASH_SOURCE"))/head.sh
 
-pecl download runkit7
+pecl download runkit7-alpha
 package_dist=$(ls | grep runkit7)
 tar xvzf $package_dist -C $INPUT_SOURCE_DIR
 
