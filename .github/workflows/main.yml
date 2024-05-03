@@ -100,6 +100,7 @@ jobs:
       - name: Push repository
         run: |
           if [ "$(git status --porcelain=v1 2>/dev/null | wc -l)" != "0" ]; then
+            rm -rf dists/
             git add dists/
             git add src/debian/changelog
             git commit -m "Update packages on dists from ${{ matrix.operating-system }} at $(date +'%d-%m-%y')" &&
