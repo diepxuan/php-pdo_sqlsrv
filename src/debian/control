@@ -1,5 +1,6 @@
 Source: php-sqlsrv
 Priority: optional
+Maintainer: Tran Ngoc Duc <ductn@diepxuan.com>
 Uploaders: Tran Ngoc Duc <ductn@diepxuan.com>
 Build-Depends: debhelper-compat (= 12),
                debhelper (>= 10~),
