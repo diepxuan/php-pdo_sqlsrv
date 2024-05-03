@@ -15,7 +15,8 @@ Pre-Depends: php-common (>= 2:69~)
 Depends: ${misc:Depends},
          ${pecl:Depends},
          ${php:Depends},
-         ${shlibs:Depends}
+         ${shlibs:Depends},
+         msodbcsql17
 Recommends: ghostscript,
             ttf-dejavu-core,
             ${pecl:Recommends}
@@ -37,7 +38,8 @@ Pre-Depends: php-common (>= 2:69~)
 Depends: ${misc:Depends},
          ${pecl:Depends},
          ${php:Depends},
-         ${shlibs:Depends}
+         ${shlibs:Depends},
+         msodbcsql17
 Recommends: ghostscript,
             ttf-dejavu-core,
             ${pecl:Recommends}
@@ -59,7 +61,8 @@ Pre-Depends: php-common (>= 2:69~)
 Depends: ${misc:Depends},
          ${pecl:Depends},
          ${php:Depends},
-         ${shlibs:Depends}
+         ${shlibs:Depends},
+         msodbcsql17
 Recommends: ghostscript,
             ttf-dejavu-core,
             ${pecl:Recommends}
