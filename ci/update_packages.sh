@@ -6,7 +6,7 @@ set -e
 . $(dirname $(realpath "$BASH_SOURCE"))/head.sh
 
 release_url=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/$owner/$project/releases/latest)
-release_tag=$(basename $release_url | sed 's/^[a-z]*//g')
+release_tag=$(basename $release_url)
 release_dir=$INPUT_SOURCE_DIR/$project-$release_tag
 
 rm -rf $release_dir
@@ -17,6 +17,7 @@ ls -la $release_dir
 ls -la $INPUT_SOURCE_DIR
 
 # Update module sqlsrv release latest
+release_tag=$(echo $release_url | sed 's/^[a-z]*//g')
 old_release_tag=$(cat $changelog | head -n 1 | awk '{print $2}' | cut -d '+' -f1 | sed 's|[()]||g')
 sed -i -e "0,/$old_release_tag/ s/$old_release_tag/$release_tag/g" $changelog
 
