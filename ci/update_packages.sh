@@ -12,7 +12,7 @@ release_dir=$INPUT_SOURCE_DIR/$project-$release_tag
 rm -rf $release_dir
 git clone -b $release_tag --depth=1 -- https://github.com/$owner/$project.git $release_dir
 
-cp $release_dir/package.xml $INPUT_SOURCE_DIR/package.xml
+# cp $release_dir/package.xml $INPUT_SOURCE_DIR/package.xml
 ls -la $release_dir
 ls -la $INPUT_SOURCE_DIR
 
