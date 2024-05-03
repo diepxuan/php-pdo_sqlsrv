@@ -5,19 +5,14 @@ set -e
 # set -u
 . $(dirname $(realpath "$BASH_SOURCE"))/head.sh
 
-release_url=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/$owner/$project/releases/latest)
-release_tag=$(basename $release_url)
-release_dir=$INPUT_SOURCE_DIR/$project-$release_tag
+pecl download $module
+package_dist=$(ls | grep $module)
+tar xvzf $package_dist -C $INPUT_SOURCE_DIR
 
-rm -rf $release_dir
-git clone -b $release_tag --depth=1 -- https://github.com/$owner/$project.git $release_dir
-
-# cp $release_dir/package.xml $INPUT_SOURCE_DIR/package.xml
-ls -la $release_dir
 ls -la $INPUT_SOURCE_DIR
 
 # Update module sqlsrv release latest
-release_tag=$(echo $release_tag | sed 's|^[a-z]*||g')
+release_tag=$(echo $package_dist | sed 's|.tgz||g' | cut -d '-' -f2)
 old_release_tag=$(cat $changelog | head -n 1 | awk '{print $2}' | cut -d '+' -f1 | sed 's|[()]||g')
 sed -i -e "0,/$old_release_tag/ s/$old_release_tag/$release_tag/g" $changelog
 

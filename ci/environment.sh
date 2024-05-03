@@ -37,6 +37,7 @@ env changelog $INPUT_SOURCE_DIR/debian/changelog
 # plugin
 env owner microsoft
 env project msphpsql
+env module sqlsrv
 
 [[ -f /etc/os-release ]] && . /etc/os-release
 [[ -f /etc/lsb-release ]] && . /etc/lsb-release
