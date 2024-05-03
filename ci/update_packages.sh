@@ -17,7 +17,7 @@ ls -la $release_dir
 ls -la $INPUT_SOURCE_DIR
 
 # Update module sqlsrv release latest
-release_tag=$(echo $release_url | sed 's|^[a-z]*||g')
+release_tag=$(echo $release_tag | sed 's|^[a-z]*||g')
 old_release_tag=$(cat $changelog | head -n 1 | awk '{print $2}' | cut -d '+' -f1 | sed 's|[()]||g')
 sed -i -e "0,/$old_release_tag/ s/$old_release_tag/$release_tag/g" $changelog
 
