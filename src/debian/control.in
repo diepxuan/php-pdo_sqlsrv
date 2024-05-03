@@ -16,7 +16,7 @@ Depends: ${misc:Depends},
          ${pecl:Depends},
          ${php:Depends},
          ${shlibs:Depends},
-         msodbcsql17
+         msodbcsql18
 Recommends: ghostscript,
             ttf-dejavu-core,
             ${pecl:Recommends}
