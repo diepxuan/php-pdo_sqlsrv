@@ -24,7 +24,7 @@ printf "man-db man-db/auto-update boolean false\n" | sudo debconf-set-selections
 sudo apt install software-properties-common
 sudo add-apt-repository ppa:ondrej/php -y
 
-. $ci_dir/depends.$module.sh
+[[ -f $ci_dir/depends.$module.sh ]] && . $ci_dir/depends.$module.sh
 
 sudo apt update
 
