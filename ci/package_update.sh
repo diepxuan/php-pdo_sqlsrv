@@ -33,7 +33,7 @@ mod debian/$module.ini
 EOF
 end_group
 
-start_group "update package informations"
+start_group "update package config"
 release_tag=$(echo $package_dist | sed 's|.tgz||g' | cut -d '-' -f2)
 old_project=$(cat $changelog | head -n 1 | awk '{print $1}' | sed 's|[()]||g')
 old_release_tag=$(cat $changelog | head -n 1 | awk '{print $2}' | sed 's|[()]||g')
@@ -45,7 +45,9 @@ sed -i -e "s|$old_codename_os|$CODENAME|g" $changelog
 sed -i -e "s|<$email>  .*|<$email>  $timelog|g" $changelog
 end_group
 
+start_group "update package config for $module"
 . $ci_dir/package_update.$module.sh
+end_group
 
 rm -rf "$control-e"
 rm -rf "$controlin-e"
@@ -55,4 +57,5 @@ start_group log
 cat $control
 cat $controlin
 cat $changelog
+cat $rules
 end_group
