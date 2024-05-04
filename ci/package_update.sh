@@ -5,7 +5,8 @@ set -e
 # set -u
 . $(dirname $(realpath "$BASH_SOURCE"))/head.sh
 
-pecl download $module
+stability=$(pecl search $module 2>/dev/null | grep ^$module | awk '{print $3}' | sed 's|[()]||g')
+pecl download $module-$stability
 # pecl download runkit7-alpha
 package_dist=$(ls | grep $module)
 tar xvzf $package_dist -C $source_dir
