@@ -18,6 +18,8 @@ on:
       - "**.yml"
       - "dists/**"
       - "src/**"
+  schedule:
+    - cron: "5 8 * * 0" # run 8:05 every Sunday
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
