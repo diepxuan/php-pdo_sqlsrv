@@ -23,7 +23,7 @@ env pwd_dir $(pwd || dirname $(realpath "$0") || realpath .)
 # user evironment
 env email ductn@diepxuan.com
 env changelog $(realpath ./src/debian/changelog)
-env timelog $(date -R)
+env timelog "$(date -R)"
 
 # plugin
 echo "repository: $repository"
