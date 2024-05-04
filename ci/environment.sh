@@ -15,29 +15,24 @@ env() {
     fi
 }
 
-INPUT_SOURCE_DIR=${INPUT_SOURCE_DIR:-"src"}
-# INPUT_HOST_ARCH=${INPUT_HOST_ARCH:-""}
-env INPUT_SOURCE_DIR $INPUT_SOURCE_DIR
-env INPUT_HOST_ARCH ${INPUT_HOST_ARCH:-""}
-
-# source_dir=$(realpath ./$INPUT_SOURCE_DIR)
-# dists_dir=$(realpath ./dists)
-# ci_dir=$(dirname $(realpath "$BASH_SOURCE"))
-# pwd_dir=$(pwd || dirname $(realpath "$0") || realpath .)
-
-env source_dir $(realpath ./$INPUT_SOURCE_DIR)
+env source_dir $(realpath ./src)
 env dists_dir $(realpath ./dists)
 env ci_dir $(dirname $(realpath "$BASH_SOURCE"))
 env pwd_dir $(pwd || dirname $(realpath "$0") || realpath .)
 
 # user evironment
 env email ductn@diepxuan.com
-env changelog $INPUT_SOURCE_DIR/debian/changelog
+env changelog $(realpath ./src/debian/changelog)
 
 # plugin
-env owner microsoft
-env project msphpsql
-env module sqlsrv
+echo "repository: $repository"
+owner=$(echo $repository | cut -d '/' -f1)
+project=$(echo $repository | cut -d '/' -f2)
+module=$(echo $project | sed 's/^php-//g')
+echo "$owner - $project"
+env owner $owner
+env project $project
+env module $module
 
 [[ -f /etc/os-release ]] && . /etc/os-release
 [[ -f /etc/lsb-release ]] && . /etc/lsb-release
