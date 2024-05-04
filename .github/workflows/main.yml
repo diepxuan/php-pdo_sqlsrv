@@ -43,9 +43,10 @@ jobs:
       - name: Dynamically set BUILDPACKAGE_EPOCH environment variable
         run: |
           sudo timedatectl set-timezone Asia/Ho_Chi_Minh
-          echo "BUILDPACKAGE_EPOCH=$(date -R)" >> $GITHUB_ENV
-          echo "repository=${{ github.repository }}" >> $GITHUB_ENV
           bash ci/environment.sh
+        env:
+          BUILDPACKAGE_EPOCH: $(date -R)
+          repository: ${{ github.repository }}
       - name: Retrieve the secret, decode and import GPG key
         run: |
           echo "$GPG_KEY====" | tr -d '\n' | fold -w 4 | sed '$ d' | tr -d '\n' | fold -w 76 | base64 -di | gpg --batch --import || true
