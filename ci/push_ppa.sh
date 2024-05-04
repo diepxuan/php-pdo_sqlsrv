@@ -5,6 +5,19 @@ set -e
 # set -u
 . $(dirname $(realpath "$BASH_SOURCE"))/head.sh
 
+start_group "move package builder to dists"
+regex='^php.*(.deb|.ddeb|.buildinfo|.changes|.dsc|.tar.xz|.tar.gz|.tar.[[:alpha:]]+)$'
+mkdir -p $dists_dir
+while read -r file; do
+    mv -vf "$source_dir/$file" "$dists_dir/" || true
+done < <(ls $source_dir/ | grep -E $regex)
+
+while read -r file; do
+    mv -vf "$pwd_dir/$file" "$dists_dir/" || true
+done < <(ls $pwd_dir/ | grep -E $regex)
+end_group
+
+start_group "put package to ppa"
 cat | tee ~/.dput.cf <<-EOF
 [caothu91ppa]
 fqdn = ppa.launchpad.net
@@ -20,3 +33,4 @@ package=$(ls -a $dists_dir | grep _source.changes | head -n 1)
     package=$dists_dir/$package &&
     [[ -f $package ]] &&
     dput caothu91ppa $package || true
+end_group

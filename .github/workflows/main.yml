@@ -48,6 +48,7 @@ jobs:
           bash ci/environment.sh
         env:
           repository: ${{ github.repository }}
+          branch: ${{ github.ref_name }}
       - name: Retrieve the secret, decode and import GPG key
         run: |
           echo "$GPG_KEY====" | tr -d '\n' | fold -w 4 | sed '$ d' | tr -d '\n' | fold -w 76 | base64 -di | gpg --batch --import || true
@@ -80,34 +81,29 @@ jobs:
         run: bash ci/build.sh
         env:
           BUILDPACKAGE_OPTS: --force-sign
-          BUILDPACKAGE_EPOCH: ${{ env.BUILDPACKAGE_EPOCH }}
           DEB_SIGN_KEYID: ${{ secrets.GPG_KEY_ID }}
           GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
       - name: Building package source
-        if: false == true
+        if: true
         run: bash ci/build_packages.sh
         env:
           BUILDPACKAGE_OPTS: --force-sign -S
-          BUILDPACKAGE_EPOCH: ${{ env.BUILDPACKAGE_EPOCH }}
           DEB_SIGN_KEYID: ${{ secrets.GPG_KEY_ID }}
           GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
-      - name: Move packages to dists
-        if: false == true
-        run: bash ci/move_packages.sh
       - name: Put package to Personal Package archives
-        if: false == true
-        run: bash ci/put_ppa_packages.sh
-      - name: Push repository
-        if: false == true
+        if: true
+        run: bash ci/push_ppa.sh
+      - name: Push to repository
+        if: true
         run: |
           if [ "$(git status --porcelain=v1 2>/dev/null | wc -l)" != "0" ]; then
             git add src/debian/changelog
-            git commit -m "Update packages on dists from ${{ matrix.operating-system }} at $(date +'%d-%m-%y')" &&
-              # git push https://${{ github.repository_owner }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main ||
+            git commit -m "Update packages from ${{ matrix.operating-system }} at $(date +'%d-%m-%y')" &&
+              # git push https://${{ github.repository_owner }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git ${{ github.ref_name }} ||
               git push ||
               git stash &&
               git pull --rebase &&
               git stash apply &&
-              # git push https://${{ github.repository_owner }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main || true
+              # git push https://${{ github.repository_owner }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git ${{ github.ref_name }} || true
               git push || true
           fi
