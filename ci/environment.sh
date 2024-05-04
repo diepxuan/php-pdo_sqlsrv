@@ -30,14 +30,14 @@ echo "repository: $repository"
 owner=$(echo $repository | cut -d '/' -f1)
 project=$(echo $repository | cut -d '/' -f2)
 module=$(echo $project | sed 's/^php-//g')
-echo "$owner - $project"
+echo "$owner - $project - $module"
 env owner $owner
 env project $project
 env module $module
 
+# os evironment
 [[ -f /etc/os-release ]] && . /etc/os-release
 [[ -f /etc/lsb-release ]] && . /etc/lsb-release
-# os evironment
 CODENAME=${CODENAME:-$DISTRIB_CODENAME}
 CODENAME=${CODENAME:-$VERSION_CODENAME}
 CODENAME=${CODENAME:-$UBUNTU_CODENAME}
