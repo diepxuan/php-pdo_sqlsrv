@@ -10,8 +10,4 @@ sed -i -e "s|\${shlibs:Depends}$|\${shlibs:Depends}, msodbcsql18|g" $controlin
 rm -rf "$control-e"
 rm -rf "$controlin-e"
 
-cat | tee -a $rules <<-EOF
-
-override_dh_shlibdeps:
-\tdh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info
-EOF
+printf "override_dh_shlibdeps:\n\tdh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info" | tee -a $rules
