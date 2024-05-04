@@ -16,6 +16,7 @@ Acquire::Languages "none";
 quiet "yes";
 EOF
 
+start_group "add apt source"
 # debconf has priority “required” and is indirectly depended on by some
 # essential packages. It is reasonably safe to blindly assume it is installed.
 printf "man-db man-db/auto-update boolean false\n" | sudo debconf-set-selections
@@ -23,21 +24,20 @@ printf "man-db man-db/auto-update boolean false\n" | sudo debconf-set-selections
 # add repository for install missing depends
 sudo apt install software-properties-common
 sudo add-apt-repository ppa:ondrej/php -y
+end_group
 
-echo "install $module depends"
+start_group "install $module depends"
 [[ -f $ci_dir/depends.$module.sh ]] && . $ci_dir/depends.$module.sh
+end_group
 
+start_group "install source depends"
 sudo apt update
-
 # shellcheck disable=SC2086
-sudo apt build-dep $INPUT_APT_OPTS -- "./$source_dir"
+sudo apt build-dep $INPUT_APT_OPTS -- "$source_dir"
 
 # In theory, explicitly installing dpkg-dev would not be necessary. `apt-get
 # build-dep` will *always* install build-essential which depends on dpkg-dev.
 # But let’s be explicit here.
 # shellcheck disable=SC2086
 sudo apt install $INPUT_APT_OPTS -- dpkg-dev libdpkg-perl dput $INPUT_EXTRA_BUILD_DEPS
-# sudo apt update
-# sudo ACCEPT_EULA=Y apt install -y msodbcsql18
-# # optional: for unixODBC development headers
-# sudo apt install -y unixodbc-dev
+end_group
