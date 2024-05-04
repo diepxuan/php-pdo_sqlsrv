@@ -66,12 +66,15 @@ jobs:
           GIT_COMMITTER_EMAIL: ${{ secrets.GIT_COMMITTER_EMAIL }}
           GIT_COMMITTER_NAME: ${{ github.repository_owner }}
           GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
+
       - name: Installing build dependencies
-        if: false == true
-        run: bash ci/install_build_deps.sh
+        # if: false == true
+        run: bash ci/depends.sh
+
       - name: Updating build information
         if: false == true
         run: bash ci/package_update.sh
+
       - name: Building package binary
         if: false == true
         run: bash ci/build_packages.sh

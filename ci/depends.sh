@@ -24,8 +24,7 @@ printf "man-db man-db/auto-update boolean false\n" | sudo debconf-set-selections
 sudo apt install software-properties-common
 sudo add-apt-repository ppa:ondrej/php -y
 
-curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc
-curl https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/prod.list | sudo tee /etc/apt/sources.list.d/mssql-release.list
+. $ci_dir/depends.$module.sh
 
 sudo apt update
 
