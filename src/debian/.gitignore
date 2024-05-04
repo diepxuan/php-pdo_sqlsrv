@@ -2,9 +2,5 @@ files
 build
 
 .debhelper
-php*-sqlsrv.php
-!php-sqlsrv.php
-php-sqlsrv/
-php*-sqlsrv/
-php-sqlsrv-all-dev/
+
 *.substvars
