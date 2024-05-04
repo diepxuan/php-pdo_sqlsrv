@@ -3,7 +3,9 @@
 
 set -e
 
+sed -i -e "s|php-all-dev, tar|php-all-dev, tar, unixodbc-dev, unixodbc|g" $control
 sed -i -e "s|php-all-dev, tar|php-all-dev, tar, unixodbc-dev, unixodbc|g" $controlin
+sed -i -e "s|\${shlibs:Depends}$|\${shlibs:Depends}, msodbcsql18|g" $control
 sed -i -e "s|\${shlibs:Depends}$|\${shlibs:Depends}, msodbcsql18|g" $controlin
 rm -rf "$controlin-e"
 

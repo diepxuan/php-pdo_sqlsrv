@@ -14,7 +14,9 @@ tar xvzf $package_dist -C $source_dir
 ls -la $source_dir
 
 old_project=$(cat $changelog | head -n 1 | awk '{print $1}' | sed 's|[()]||g')
+sed -i -e "0,/_PROJECT_/ s/_PROJECT_/$project/g" $control
 sed -i -e "0,/_PROJECT_/ s/_PROJECT_/$project/g" $controlin
+sed -i -e "0,/_MODULE_/ s/_MODULE_/$module/g" $control
 sed -i -e "0,/_MODULE_/ s/_MODULE_/$module/g" $controlin
 
 cat | tee "$source_dir/debian/$module.ini" <<-EOF
