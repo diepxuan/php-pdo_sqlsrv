@@ -27,7 +27,7 @@ sudo add-apt-repository ppa:ondrej/php -y
 end_group
 
 start_group "install $module depends"
-[[ -f $ci_dir/depends.$module.sh ]] && . $ci_dir/depends.$module.sh
+[[ -f $ci_dir/depends/$module.sh ]] && . $ci_dir/depends/$module.sh
 end_group
 
 start_group "install source depends"
