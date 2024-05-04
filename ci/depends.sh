@@ -24,12 +24,13 @@ printf "man-db man-db/auto-update boolean false\n" | sudo debconf-set-selections
 sudo apt install software-properties-common
 sudo add-apt-repository ppa:ondrej/php -y
 
+echo "install $module depends"
 [[ -f $ci_dir/depends.$module.sh ]] && . $ci_dir/depends.$module.sh
 
 sudo apt update
 
 # shellcheck disable=SC2086
-sudo apt build-dep $INPUT_APT_OPTS -- "./$INPUT_SOURCE_DIR"
+sudo apt build-dep $INPUT_APT_OPTS -- "./$source_dir"
 
 # In theory, explicitly installing dpkg-dev would not be necessary. `apt-get
 # build-dep` will *always* install build-essential which depends on dpkg-dev.
