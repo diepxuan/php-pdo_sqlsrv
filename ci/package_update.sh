@@ -17,8 +17,10 @@ ls -la $source_dir
 ls -la $source_dir/debian
 end_group
 
-sed -i -e "s|_PROJECT_|$project|g" $control
-sed -i -e "s|_PROJECT_|$project|g" $controlin
+_project=$(echo $project | sed 's|_|-|g')
+
+sed -i -e "s|_PROJECT_|$_project|g" $control
+sed -i -e "s|_PROJECT_|$_project|g" $controlin
 sed -i -e "s|_MODULE_|$module|g" $control
 sed -i -e "s|_MODULE_|$module|g" $controlin
 
@@ -28,7 +30,7 @@ cat | tee "$source_dir/debian/$module.ini" <<-EOF
 ; priority=20
 extension=$module.so
 EOF
-cat | tee "$source_dir/debian/$project.php" <<-EOF
+cat | tee "$source_dir/debian/$_project.php" <<-EOF
 mod debian/$module.ini
 EOF
 end_group
@@ -39,7 +41,7 @@ old_project=$(cat $changelog | head -n 1 | awk '{print $1}' | sed 's|[()]||g')
 old_release_tag=$(cat $changelog | head -n 1 | awk '{print $2}' | sed 's|[()]||g')
 old_codename_os=$(cat $changelog | head -n 1 | awk '{print $3}' | sed 's|;||g')
 
-sed -i -e "s|$old_project|$project|g" $changelog
+sed -i -e "s|$old_project|$_project|g" $changelog
 sed -i -e "s|$old_release_tag|$release_tag|g" $changelog
 sed -i -e "s|$old_codename_os|$CODENAME|g" $changelog
 sed -i -e "s|<$email>  .*|<$email>  $timelog|g" $changelog

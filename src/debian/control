@@ -53,25 +53,3 @@ Description: Replace, rename, and remove user defined
   .
   Define customized superglobal variables for general
   purpose use.
-
-Package: php8.1-_MODULE_
-Architecture: any
-Pre-Depends: php-common (>= 2:69~)
-Depends: ${misc:Depends},
-         ${pecl:Depends},
-         ${php:Depends},
-         ${shlibs:Depends}
-Recommends: ghostscript,
-            ttf-dejavu-core,
-            ${pecl:Recommends}
-Conflicts: ${pecl:Conflicts}
-Provides: ${pecl:Provides},
-          ${php:Provides}
-Breaks: ${pecl:Breaks}
-Replaces: ${pecl:Replaces}
-Suggests: ${pecl:Suggests}
-Description: Replace, rename, and remove user defined
-  functions, methods, and constants.
-  .
-  Define customized superglobal variables for general
-  purpose use.
