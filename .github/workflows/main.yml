@@ -7,13 +7,13 @@ on:
   push:
     branches: [main]
     paths-ignore:
-      - '**.md'
-      - 'dists/**'
+      - "**.md"
+      - "dists/**"
   pull_request:
     branches: [main]
     paths-ignore:
-      - '**.md'
-      - 'dists/**'
+      - "**.md"
+      - "dists/**"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -44,6 +44,7 @@ jobs:
         run: |
           sudo timedatectl set-timezone Asia/Ho_Chi_Minh
           echo "BUILDPACKAGE_EPOCH=$(date -R)" >> $GITHUB_ENV
+          echo ${{ github.repository }}
       - name: Generate environment
         run: bash ci/environment.sh
       - name: Retrieve the secret, decode and import GPG key
@@ -68,7 +69,7 @@ jobs:
         env:
           GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
       - name: Configure Git
-        run : |
+        run: |
           git config --local user.email "$GIT_COMMITTER_EMAIL"
           git config --local user.name "$GIT_COMMITTER_NAME"
           git config --local pull.rebase true
@@ -76,10 +77,13 @@ jobs:
           GIT_COMMITTER_EMAIL: ${{ secrets.GIT_COMMITTER_EMAIL }}
           GIT_COMMITTER_NAME: ${{ github.repository_owner }}
       - name: Installing build dependencies
+        if: false == true
         run: bash ci/install_build_deps.sh
       - name: Updating build information
+        if: false == true
         run: bash ci/update_packages.sh
       - name: Building package binary
+        if: false == true
         run: bash ci/build_packages.sh
         env:
           BUILDPACKAGE_OPTS: --force-sign
@@ -87,6 +91,7 @@ jobs:
           DEB_SIGN_KEYID: ${{ secrets.GPG_KEY_ID }}
           GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
       - name: Building package source
+        if: false == true
         run: bash ci/build_packages.sh
         env:
           BUILDPACKAGE_OPTS: --force-sign -S
@@ -94,8 +99,10 @@ jobs:
           DEB_SIGN_KEYID: ${{ secrets.GPG_KEY_ID }}
           GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
       - name: Move packages to dists
+        if: false == true
         run: bash ci/move_packages.sh
       - name: Put package to Personal Package archives
+        if: false == true
         run: bash ci/put_ppa_packages.sh
       - name: Push repository
         if: false == true
