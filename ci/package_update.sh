@@ -37,6 +37,7 @@ end_group
 
 start_group "update package config"
 release_tag=$(echo $package_dist | sed 's|.tgz||g' | cut -d '-' -f2)
+release_tag="$release_tag+$DISTRIB~$RELEASE"
 old_project=$(cat $changelog | head -n 1 | awk '{print $1}' | sed 's|[()]||g')
 old_release_tag=$(cat $changelog | head -n 1 | awk '{print $2}' | sed 's|[()]||g')
 old_codename_os=$(cat $changelog | head -n 1 | awk '{print $3}' | sed 's|;||g')
