@@ -13,5 +13,5 @@ rm -rf "$controlin-e"
 cat | tee -a $rules <<-EOF
 
 override_dh_shlibdeps:
-	dh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info
+\tdh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info
 EOF
