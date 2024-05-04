@@ -85,7 +85,7 @@ jobs:
           GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
       - name: Building package source
         if: true
-        run: bash ci/build_packages.sh
+        run: bash ci/build.sh
         env:
           BUILDPACKAGE_OPTS: --force-sign -S
           DEB_SIGN_KEYID: ${{ secrets.GPG_KEY_ID }}
