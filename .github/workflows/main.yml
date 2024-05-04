@@ -68,16 +68,16 @@ jobs:
           GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
 
       - name: Installing build dependencies
-        # if: false == true
+        if: true
         run: bash ci/depends.sh
 
       - name: Updating build information
-        if: false == true
+        if: true
         run: bash ci/package_update.sh
 
       - name: Building package binary
-        if: false == true
-        run: bash ci/build_packages.sh
+        if: true
+        run: bash ci/build.sh
         env:
           BUILDPACKAGE_OPTS: --force-sign
           BUILDPACKAGE_EPOCH: ${{ env.BUILDPACKAGE_EPOCH }}

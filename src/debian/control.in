@@ -17,7 +17,6 @@ Depends: ${misc:Depends},
          ${pecl:Depends},
          ${php:Depends},
          ${shlibs:Depends}
-
 Recommends: ghostscript,
             ttf-dejavu-core,
             ${pecl:Recommends}
