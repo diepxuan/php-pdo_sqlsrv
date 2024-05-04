@@ -36,6 +36,10 @@ sed -i -e "s|<$email>  .*|<$email>  $timelog|g" $changelog
 
 . $ci_dir/package_update.$module.sh
 
+rm -rf "$control-e"
+rm -rf "$controlin-e"
+rm -rf "$changelog-e"
+
 start_group log
 cat $control
 cat $controlin
