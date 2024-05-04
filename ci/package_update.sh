@@ -46,7 +46,7 @@ sed -i -e "s|<$email>  .*|<$email>  $timelog|g" $changelog
 end_group
 
 start_group "update package config for $module"
-. $ci_dir/package_update.$module.sh
+. $ci_dir/package_update/$module.sh
 end_group
 
 rm -rf "$control-e"
