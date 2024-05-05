@@ -24,7 +24,7 @@ env pwd_dir $(pwd || dirname $(realpath "$0") || realpath .)
 env email ductn@diepxuan.com
 env changelog $(realpath ./src/debian/changelog)
 env control $(realpath ./src/debian/control)
-env controlin $(realpath ./src/debian/control.in)
+env controlin $(realpath ./src/debian/_control.in.old)
 env rules $(realpath ./src/debian/rules)
 env timelog "$(date -R)"
 

@@ -11,7 +11,7 @@ Standards-Version: 2.0.1
 Homepage: https://pecl.php.net/package/_MODULE_
 
 Package: _PROJECT_
-Architecture: any
+Architecture: all
 Pre-Depends: php-common (>= 2:69~)
 Depends: ${misc:Depends},
          ${pecl:Depends},
