@@ -10,7 +10,7 @@ pecl download $module-$stability
 # pecl download runkit7-alpha
 package_dist=$(ls | grep $module)
 tar xvzf $package_dist -C $source_dir
-package_clog=$(php -r "echo simplexml_load_file('$source_dirpackage.xml')->notes;" 2>/dev/null)
+package_clog=$(php -r "echo simplexml_load_file('$source_dir/package.xml')->notes;" 2>/dev/null)
 
 start_group "view source"
 ls -la ./
