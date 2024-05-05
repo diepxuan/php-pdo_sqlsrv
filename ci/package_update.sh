@@ -59,10 +59,6 @@ start_group "update package config for $module"
 [[ -f $ci_dir/package_update/$module.sh ]] && . $ci_dir/package_update/$module.sh
 end_group
 
-start_group "update package changelog"
-[[ -f $ci_dir/package_update/$module.sh ]] && . $ci_dir/package_update/$module.sh
-end_group
-
 rm -rf "$control-e"
 rm -rf "$controlin-e"
 rm -rf "$changelog-e"
