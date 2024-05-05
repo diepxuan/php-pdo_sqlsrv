@@ -75,10 +75,17 @@ jobs:
       - name: Installing build dependencies
         if: true
         run: bash ci/depends.sh
+        env:
+          INPUT_EXTRA_BUILD_DEPS:
 
       - name: Updating build information
         if: true
         run: bash ci/package_update.sh
+        env:
+          DEBEMAIL: ductn@diepxuan.com
+          EMAIL: ductn@diepxuan.com
+          DEBFULLNAME: Tran Ngoc Duc
+          NAME: Tran Ngoc Duc
 
       - name: Building package binary
         if: true

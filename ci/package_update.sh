@@ -5,12 +5,14 @@ set -e
 # set -u
 . $(dirname $(realpath "$BASH_SOURCE"))/head.sh
 
+start_group "extract package source"
 stability=$(pecl search $module 2>/dev/null | grep ^$module | awk '{print $3}' | sed 's|[()]||g')
 pecl download $module-$stability
 # pecl download runkit7-alpha
 package_dist=$(ls | grep $module)
 tar xvzf $package_dist -C $source_dir
 package_clog=$(php -r "echo simplexml_load_file('$source_dir/package.xml')->notes;" 2>/dev/null)
+end_group
 
 start_group "view source"
 ls -la ./
@@ -37,6 +39,7 @@ EOF
 end_group
 
 start_group "update package config"
+cd $source_dir
 release_tag=$(echo $package_dist | sed 's|.tgz||g' | cut -d '-' -f2)
 release_tag="$release_tag+$DISTRIB~$RELEASE"
 old_project=$(cat $changelog | head -n 1 | awk '{print $1}' | sed 's|[()]||g')
@@ -47,9 +50,15 @@ sed -i -e "s|$old_project|$_project|g" $changelog
 sed -i -e "s|$old_release_tag|$release_tag|g" $changelog
 sed -i -e "s|$old_codename_os|$CODENAME|g" $changelog
 sed -i -e "s|<$email>  .*|<$email>  $timelog|g" $changelog
+dch -a $package_clog -m
+cd -
 end_group
 
 start_group "update package config for $module"
+[[ -f $ci_dir/package_update/$module.sh ]] && . $ci_dir/package_update/$module.sh
+end_group
+
+start_group "update package changelog"
 [[ -f $ci_dir/package_update/$module.sh ]] && . $ci_dir/package_update/$module.sh
 end_group
 
@@ -60,8 +69,11 @@ rm -rf "$changelog-e"
 start_group log
 cat $control
 cat $controlin
-cat $changelog
 cat $rules
+end_group
+
+start_group changelog
+cat $changelog
 end_group
 
 start_group "log package changelog"

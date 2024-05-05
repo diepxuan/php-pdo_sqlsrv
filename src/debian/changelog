@@ -1,5 +1,4 @@
-php-runkit7 (4.0.0a6) jammy; urgency=medium
+php-runkit7 (4.0.0a6) UNRELEASED; urgency=medium
 
-  * Enables ability to modify/rename/remove internal functions.
 
  -- Tran Ngoc Duc <ductn@diepxuan.com>  Sat, 04 May 2024 22:00:51 +0700
