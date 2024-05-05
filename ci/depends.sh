@@ -33,6 +33,7 @@ end_group
 start_group "install source depends"
 sudo apt update
 # shellcheck disable=SC2086
+cat $controlin | tee $control
 sudo apt build-dep $INPUT_APT_OPTS -- "$source_dir"
 
 # In theory, explicitly installing dpkg-dev would not be necessary. `apt-get
