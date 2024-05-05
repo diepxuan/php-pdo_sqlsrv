@@ -23,10 +23,9 @@ end_group
 _project=$(echo $project | sed 's|_|-|g')
 
 start_group "update control"
-sed -i -e "s|_PROJECT_|$_project|g" $control
 sed -i -e "s|_PROJECT_|$_project|g" $controlin
-sed -i -e "s|_MODULE_|$module|g" $control
 sed -i -e "s|_MODULE_|$module|g" $controlin
+cat $controlin | tee $control
 end_group
 
 start_group "create php config files"
