@@ -12,7 +12,6 @@ pecl download $module-$stability
 package_dist=$(ls | grep $module)
 tar xvzf $package_dist -C $source_dir
 package_clog=$(php -r "echo simplexml_load_file('$source_dir/package.xml')->notes;" 2>/dev/null)
-package_desc=$(php -r "echo simplexml_load_file('$source_dir/package.xml')->description;" 2>/dev/null)
 end_group
 
 start_group "view source"
@@ -28,10 +27,6 @@ sed -i -e "s|_PROJECT_|$_project|g" $control
 sed -i -e "s|_PROJECT_|$_project|g" $controlin
 sed -i -e "s|_MODULE_|$module|g" $control
 sed -i -e "s|_MODULE_|$module|g" $controlin
-end_group
-
-start_group "update substvars"
-sed -i "s|Description:$|Description: '$package_desc'|g" $source_dir/debian/$_project.substvars
 end_group
 
 start_group "create php config files"
