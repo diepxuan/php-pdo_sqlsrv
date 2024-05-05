@@ -26,7 +26,7 @@ env changelog $(realpath ./src/debian/changelog)
 env control $(realpath ./src/debian/control)
 env controlin $(realpath ./src/debian/control.in)
 env rules $(realpath ./src/debian/rules)
-env timelog "$(date -R)"
+env timelog "$(Lang=C date -R)"
 
 # plugin
 echo "repository: $repository"
