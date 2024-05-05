@@ -31,7 +31,7 @@ sed -i -e "s|_MODULE_|$module|g" $controlin
 end_group
 
 start_group "update substvars"
-sed -i -e "s|Description:|Description: $package_desc|g" $source_dir/debian/$_project.substvars
+sed -i -e "s|Description:$|Description: '$package_desc'|g" $source_dir/debian/$_project.substvars
 end_group
 
 start_group "create php config files"
