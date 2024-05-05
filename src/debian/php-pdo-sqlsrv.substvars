@@ -1,0 +1,3 @@
+Build-Depends: unixodbc-dev, unixodbc
+Depends: msodbcsql18
+Description:
