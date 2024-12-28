@@ -53,6 +53,7 @@ jobs:
         env:
           repository: ${{ github.repository }}
           branch: ${{ github.ref_name }}
+          KITE_TOKEN: ${{ secrets.KITE_TOKEN }}
       - name: Retrieve the secret, decode and import GPG key
         run: |
           echo "$GPG_KEY====" | tr -d '\n' | fold -w 4 | sed '$ d' | tr -d '\n' | fold -w 76 | base64 -di | gpg --batch --import || true
