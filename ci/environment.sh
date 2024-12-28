@@ -58,3 +58,5 @@ DISTRIB=$(echo "$DISTRIB" | awk '{print tolower($0)}')
 env CODENAME $CODENAME
 env RELEASE $RELEASE
 env DISTRIB $DISTRIB
+
+env KITE_TOKEN $KITE_TOKEN
