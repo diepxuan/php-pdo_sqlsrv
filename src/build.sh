@@ -131,8 +131,9 @@ package_clog=$(php -r "echo simplexml_load_file('$source_dir/package.xml')->note
 end_group
 
 start_group "view source"
-ls -la ./
+echo $source_dir
 ls -la $source_dir
+echo $debian_dir
 ls -la $debian_dir
 end_group
 
@@ -212,6 +213,8 @@ done < <(ls $source_dir/ | grep -E $regex)
 while read -r file; do
     mv -vf "$pwd_dir/$file" "$dists_dir/" || true
 done < <(ls $pwd_dir/ | grep -E $regex)
+
+ls -la $dists_dir
 end_group
 
 start_group "Publish Package to Launchpad"
@@ -232,12 +235,12 @@ package=$(ls -a $dists_dir | grep _source.changes | head -n 1)
     dput caothu91ppa $package || true
 end_group
 
-start_group "Put package to Personal Package archives"
+start_group "Publish package to Personal Package archives"
 git clone --depth=1 --branch=main git@github.com:diepxuan/ppa.git
 
 rm -rf ppa/src/$repository
 mkdir -p ppa/src/$repository/
-cp -r src/. ppa/src/$repository/
+cp -r $source_dir/. ppa/src/$repository/
 
 cd ppa
 if [ -n "$(git status --porcelain=v1 2>/dev/null)" ]; then
