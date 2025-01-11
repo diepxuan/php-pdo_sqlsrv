@@ -66,6 +66,7 @@ jobs:
           sudo timedatectl set-timezone Asia/Ho_Chi_Minh
           bash build.sh
         env:
+          INPUT_APT_OPTS:
           INPUT_EXTRA_BUILD_DEPS:
           repository: ${{ github.repository }}
           branch: ${{ github.ref_name }}
@@ -73,6 +74,7 @@ jobs:
           EMAIL: ductn@diepxuan.com
           DEBFULLNAME: Tran Ngoc Duc
           NAME: Tran Ngoc Duc
+          DEBIAN_FRONTEND: noninteractive
 
       - name: Push to repository
         if: false

@@ -4,6 +4,8 @@
 set -e
 # set -u
 
+export DEBIAN_FRONTEND=noninteractive
+
 # Usage:
 #   error MESSAGE
 error() {
@@ -29,6 +31,7 @@ env() {
         sed -i "s|^$param=.*|$param=$value|" $GITHUB_ENV ||
         echo "$param=$value" >>$GITHUB_ENV
     export $param="$value"
+    echo $param: $value
 }
 
 start_group "Dynamically set environment variable"
@@ -38,22 +41,23 @@ env dists_dir $(realpath $source_dir/dists)
 
 # user evironment
 env email ductn@diepxuan.com
-env changelog $(realpath ./src/debian/changelog)
-env control $(realpath ./src/debian/control)
-env controlin $(realpath ./src/debian/control.in)
-env rules $(realpath ./src/debian/rules)
+env DEBEMAIL ductn@diepxuan.com
+env EMAIL ductn@diepxuan.com
+env DEBFULLNAME Tran Ngoc Duc
+env NAME Tran Ngoc Duc
+
+# debian
+env changelog $(realpath $debian_dir/changelog)
+env control $(realpath $debian_dir/control)
+env controlin $(realpath $debian_dir/control.in)
+env rules $(realpath $debian_dir/rules)
 env timelog "$(Lang=C date -R)"
 
 # plugin
-echo "repository: $repository"
 env repository $repository
-owner=$(echo $repository | cut -d '/' -f1)
-project=$(echo $repository | cut -d '/' -f2)
-module=$(echo $project | sed 's/^php-//g')
-echo "$owner - $project - $module"
-env owner $owner
-env project $project
-env module $module
+env owner $(echo $repository | cut -d '/' -f1)
+env project $(echo $repository | cut -d '/' -f2)
+env module $(echo $project | sed 's/^php-//g')
 
 # os evironment
 [[ -f /etc/os-release ]] && . /etc/os-release
@@ -80,13 +84,10 @@ DISTRIB=$(echo "$DISTRIB" | awk '{print tolower($0)}')
 env CODENAME $CODENAME
 env RELEASE $RELEASE
 env DISTRIB $DISTRIB
-
-env KITE_TOKEN $KITE_TOKEN
 end_group
 
+start_group "add apt source"
 APT_CONF_FILE=/etc/apt/apt.conf.d/50build-deb-action
-
-export DEBIAN_FRONTEND=noninteractive
 
 cat | sudo tee "$APT_CONF_FILE" <<-EOF
 APT::Get::Assume-Yes "yes";
@@ -95,7 +96,6 @@ Acquire::Languages "none";
 quiet "yes";
 EOF
 
-start_group "add apt source"
 # debconf has priority “required” and is indirectly depended on by some
 # essential packages. It is reasonably safe to blindly assume it is installed.
 printf "man-db man-db/auto-update boolean false\n" | sudo debconf-set-selections
@@ -108,7 +108,7 @@ sudo apt install software-properties-common
 # sudo add-apt-repository ppa:ondrej/php -y
 end_group
 
-start_group "install source depends"
+start_group "Install Build Dependencies"
 sudo apt update
 # shellcheck disable=SC2086
 cat $controlin | tee $control
