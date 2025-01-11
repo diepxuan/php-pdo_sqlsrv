@@ -7,11 +7,11 @@ set -e
 
 env() {
     param=$1
-    value=$2
+    value="${@:2}"
     grep -q "^$param=" $GITHUB_ENV &&
         sed -i "s|^$param=.*|$param=$value|" $GITHUB_ENV ||
         echo "$param=$value" >>$GITHUB_ENV
-    export $param=$value
+    export $param="$value"
 }
 
 env source_dir $(realpath ./src)
