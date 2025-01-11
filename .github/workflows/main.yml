@@ -67,13 +67,11 @@ jobs:
           ssh_key_id: ${{ secrets.SSH_ID_RSA }}
 
       - name: Installing build dependencies
-        if: true
         run: bash ci/depends.sh
         env:
           INPUT_EXTRA_BUILD_DEPS:
 
       - name: Updating build information
-        if: true
         run: bash ci/package_update.sh
         env:
           DEBEMAIL: ductn@diepxuan.com
@@ -82,15 +80,19 @@ jobs:
           NAME: Tran Ngoc Duc
 
       - name: Building package binary
-        if: true
-        run: bash ci/build.sh
+        working-directory: src
+        shell: bash
+        run: |
+          dpkg-buildpackage $BUILDPACKAGE_OPTS
         env:
           BUILDPACKAGE_OPTS: --force-sign
           DEB_SIGN_KEYID: ${{ secrets.GPG_KEY_ID }}
           GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
       - name: Building package source
-        if: true
-        run: bash ci/build.sh
+        working-directory: src
+        shell: bash
+        run: |
+          dpkg-buildpackage $BUILDPACKAGE_OPTS
         env:
           BUILDPACKAGE_OPTS: --force-sign -S
           DEB_SIGN_KEYID: ${{ secrets.GPG_KEY_ID }}

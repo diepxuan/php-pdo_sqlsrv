@@ -19,6 +19,7 @@ env source_dir $(realpath ./src)
 env dists_dir $(realpath ./dists)
 env ci_dir $(dirname $(realpath "$BASH_SOURCE"))
 env pwd_dir $(pwd || dirname $(realpath "$0") || realpath .)
+env debian_dir $(realpath $source_dir/debian)
 
 # user evironment
 env email ductn@diepxuan.com

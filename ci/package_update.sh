@@ -17,7 +17,7 @@ end_group
 start_group "view source"
 ls -la ./
 ls -la $source_dir
-ls -la $source_dir/debian
+ls -la $debian_dir
 end_group
 
 _project=$(echo $project | sed 's|_|-|g')
@@ -29,14 +29,16 @@ cat $controlin | tee $control
 end_group
 
 start_group "create php config files"
-cat | tee "$source_dir/debian/$module.ini" <<-EOF
+cat | tee "$debian_dir/$module.ini" <<-EOF
 ; configuration for pecl $module module
 ; priority=20
 extension=$module.so
 EOF
-cat | tee "$source_dir/debian/$_project.php" <<-EOF
+cat | tee "$debian_dir/$_project.php" <<-EOF
 mod debian/$module.ini
 EOF
+[[ -f "$debian_dir/$module.rules" ]] && cat "$debian_dir/$module.rules" >>"$rules"
+[[ -f "$debian_dir/extend.$module.ini" ]] && cat "$debian_dir/extend.$module.ini" >>"$debian_dir/$module.ini"
 end_group
 
 start_group "update package config"
@@ -53,10 +55,6 @@ sed -i -e "s|$old_codename_os|$CODENAME|g" $changelog
 sed -i -e "s|<$email>  .*|<$email>  $timelog|g" $changelog
 dch -a $package_clog -m
 cd -
-end_group
-
-start_group "update package config for $module"
-[[ -f $ci_dir/package_update/$module.sh ]] && . $ci_dir/package_update/$module.sh
 end_group
 
 rm -rf "$control-e"
