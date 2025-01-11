@@ -8,18 +8,17 @@ set -e
 env() {
     param=$1
     value=$2
-    if [ "$(cat $GITHUB_ENV | grep $param= 2>/dev/null | wc -l)" != "0" ]; then
-        sed -i "s|$param=.*|$param=$value|" $GITHUB_ENV
-    else
+    grep -q "^$param=" $GITHUB_ENV &&
+        sed -i "s|^$param=.*|$param=$value|" $GITHUB_ENV ||
         echo "$param=$value" >>$GITHUB_ENV
-    fi
+    export $param=$value
 }
 
 env source_dir $(realpath ./src)
 env dists_dir $(realpath ./dists)
 env ci_dir $(dirname $(realpath "$BASH_SOURCE"))
 env pwd_dir $(pwd || dirname $(realpath "$0") || realpath .)
-env debian_dir $(realpath $source_dir/debian)
+env debian_dir $(realpath ./src/debian)
 
 # user evironment
 env email ductn@diepxuan.com
