@@ -8,16 +8,16 @@ on:
     branches: [main]
     paths-ignore:
       - "**.md"
-      - "**.yml"
-      - "dists/**"
-      - "src/**"
+      # - "**.yml"
+      # - "dists/**"
+      # - "src/**"
   pull_request:
     branches: [main]
     paths-ignore:
       - "**.md"
-      - "**.yml"
-      - "dists/**"
-      - "src/**"
+      # - "**.yml"
+      # - "dists/**"
+      # - "src/**"
   schedule:
     - cron: "5 8 * * 0" # run 8:05 every Sunday
 
