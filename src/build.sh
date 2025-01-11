@@ -39,6 +39,7 @@ env source_dir $(dirname $(realpath "$BASH_SOURCE"))
 env debian_dir $(realpath $source_dir/debian)
 env dists_dir $(realpath $source_dir/dists)
 env pwd_dir $(realpath $(dirname $source_dir))
+env ppa_dir $(realpath $pwd_dir/ppa)
 
 # user evironment
 env email ductn@diepxuan.com
@@ -237,13 +238,14 @@ package=$(ls -a $dists_dir | grep _source.changes | head -n 1)
 end_group
 
 start_group "Publish package to Personal Package archives"
+cd $pwd_dir
 git clone --depth=1 --branch=main git@github.com:diepxuan/ppa.git
 
-rm -rf ppa/src/$repository
-mkdir -p ppa/src/$repository/
-cp -r $source_dir/* ppa/src/$repository/
+rm -rf $ppa_dir/src/$repository
+mkdir -p $ppa_dir/src/$repository/
+cp -r $source_dir/. $ppa_dir/src/$repository/
 
-cd ppa
+cd $ppa_dir
 if [ -n "$(git status --porcelain=v1 2>/dev/null)" ]; then
     git add src/
     git commit -m "${GIT_COMMITTER_MESSAGE:-'Auto-commit'}"
