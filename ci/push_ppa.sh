@@ -34,12 +34,3 @@ package=$(ls -a $dists_dir | grep _source.changes | head -n 1)
     [[ -f $package ]] &&
     dput caothu91ppa $package || true
 end_group
-
-start_group "put package to buildkite"
-regex='.*(.deb)$'
-while read -r file; do
-    curl -X POST https://api.buildkite.com/v2/packages/organizations/diepxuan/registries/diepxuan/packages \
-        -H "Authorization: Bearer $KITE_TOKEN" \
-        -F "file=@$dists_dir/$file" || true
-done < <(ls $dists_dir/ | grep -E $regex)
-end_group
