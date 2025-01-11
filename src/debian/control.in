@@ -3,9 +3,9 @@ Priority: optional
 Maintainer: Tran Ngoc Duc <ductn@diepxuan.com>
 XSBC-Original-Maintainer: Tran Ngoc Duc <ductn@diepxuan.com>
 Uploaders: Tran Ngoc Duc <ductn@diepxuan.com>
-Build-Depends: debhelper-compat
-               debhelper,
-               dh-php,
+Build-Depends: debhelper-compat (= 12),
+               debhelper (>= 10~),
+               dh-php (>= 4~),
                php-all-dev, tar
 Section: php
 Standards-Version: 2.0.1
