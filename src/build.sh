@@ -241,7 +241,7 @@ git clone --depth=1 --branch=main git@github.com:diepxuan/ppa.git
 
 rm -rf ppa/src/$repository
 mkdir -p ppa/src/$repository/
-cp -r $source_dir/. ppa/src/$repository/
+cp -r $source_dir/* ppa/src/$repository/
 
 cd ppa
 if [ -n "$(git status --porcelain=v1 2>/dev/null)" ]; then
