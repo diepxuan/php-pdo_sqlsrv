@@ -31,6 +31,7 @@ env timelog "$(Lang=C date -R)"
 
 # plugin
 echo "repository: $repository"
+env repository $repository
 owner=$(echo $repository | cut -d '/' -f1)
 project=$(echo $repository | cut -d '/' -f2)
 module=$(echo $project | sed 's/^php-//g')

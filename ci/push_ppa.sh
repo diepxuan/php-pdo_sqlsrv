@@ -34,3 +34,23 @@ package=$(ls -a $dists_dir | grep _source.changes | head -n 1)
     [[ -f $package ]] &&
     dput caothu91ppa $package || true
 end_group
+
+start_group "Put package to Personal Package archives"
+git clone --depth=1 --branch=main git@github.com:diepxuan/ppa.git
+
+rm -rf ppa/src/$repository
+mkdir -p ppa/src/$repository/
+cp -r src/. ppa/src/$repository/
+
+cd ppa
+if [ -n "$(git status --porcelain=v1 2>/dev/null)" ]; then
+    git add src/
+    git commit -m "${GIT_COMMITTER_MESSAGE:-'Auto-commit'}"
+    if ! git push; then
+        git stash
+        git pull --rebase
+        git stash pop
+        git push || true
+    fi
+fi
+end_group

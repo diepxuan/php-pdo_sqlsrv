@@ -100,6 +100,8 @@ jobs:
       - name: Put package to Personal Package archives
         if: true
         run: bash ci/push_ppa.sh
+        env:
+          repository: ${{ github.repository }}
       - name: Push to repository
         if: false
         run: |
@@ -114,14 +116,3 @@ jobs:
               # git push https://${{ github.repository_owner }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git ${{ github.ref_name }} || true
               git push || true
           fi
-
-  package-publish:
-    needs: package-build
-    permissions:
-      contents: write
-    uses: diepxuan/.github/.github/workflows/debian-package-publish.yml@main
-    secrets:
-      GPG_KEY: ${{ secrets.GPG_KEY }}
-      GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
-      GIT_COMMITTER_EMAIL: ${{ secrets.GIT_COMMITTER_EMAIL }}
-      SSH_ID_RSA: ${{ secrets.SSH_ID_RSA }}
