@@ -38,6 +38,7 @@ start_group "Dynamically set environment variable"
 env source_dir $(dirname $(realpath "$BASH_SOURCE"))
 env debian_dir $(realpath $source_dir/debian)
 env dists_dir $(realpath $source_dir/dists)
+env pwd_dir $(realpath $(dirname $source_dir))
 
 # user evironment
 env email ductn@diepxuan.com
