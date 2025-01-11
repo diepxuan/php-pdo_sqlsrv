@@ -47,14 +47,6 @@ jobs:
       #     Example: rsa3072/7E0EC917A5074BD3 2023-03-13 [SC] [expires: 2025-03-12]
       # Generate key as base64
       #     gpg --export-secret-keys 3AA5C34371567BD2 | base64
-      - name: Dynamically set environment variable
-        run: |
-          sudo timedatectl set-timezone Asia/Ho_Chi_Minh
-          bash ci/environment.sh
-        env:
-          repository: ${{ github.repository }}
-          branch: ${{ github.ref_name }}
-          KITE_TOKEN: ${{ secrets.KITE_TOKEN }}
       - name: Setup GPG
         uses: diepxuan/.github/.github/actions/gpg-setup@main
         with:
@@ -67,42 +59,21 @@ jobs:
         with:
           ssh_key_id: ${{ secrets.SSH_ID_RSA }}
 
-      - name: Installing build dependencies
-        run: bash ci/depends.sh
+      - name: Package build
+        working-directory: src
+        shell: bash
+        run: |
+          sudo timedatectl set-timezone Asia/Ho_Chi_Minh
+          bash build.sh
         env:
           INPUT_EXTRA_BUILD_DEPS:
-
-      - name: Updating build information
-        run: bash ci/package_update.sh
-        env:
+          repository: ${{ github.repository }}
+          branch: ${{ github.ref_name }}
           DEBEMAIL: ductn@diepxuan.com
           EMAIL: ductn@diepxuan.com
           DEBFULLNAME: Tran Ngoc Duc
           NAME: Tran Ngoc Duc
 
-      - name: Building package binary
-        working-directory: src
-        shell: bash
-        run: |
-          dpkg-buildpackage $BUILDPACKAGE_OPTS
-        env:
-          BUILDPACKAGE_OPTS: --force-sign
-          DEB_SIGN_KEYID: ${{ secrets.GPG_KEY_ID }}
-          GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
-      - name: Building package source
-        working-directory: src
-        shell: bash
-        run: |
-          dpkg-buildpackage $BUILDPACKAGE_OPTS
-        env:
-          BUILDPACKAGE_OPTS: --force-sign -S
-          DEB_SIGN_KEYID: ${{ secrets.GPG_KEY_ID }}
-          GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
-      - name: Put package to Personal Package archives
-        if: true
-        run: bash ci/push_ppa.sh
-        env:
-          repository: ${{ github.repository }}
       - name: Push to repository
         if: false
         run: |
