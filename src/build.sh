@@ -116,7 +116,7 @@ printf "man-db man-db/auto-update boolean false\n" | sudo debconf-set-selections
     sudo gpg --dearmor -o /usr/share/keyrings/microsoft-prod.gpg
 
 [[ ! -f /etc/apt/sources.list.d/prod.list ]] &&
-    ! grep -q 'https://packages.microsoft.com/ubuntu/24.04/prod' /etc/apt/sources.list /etc/apt/sources.list.d/* &&
+    ! grep -q 'https://packages.microsoft.com' /etc/apt/sources.list /etc/apt/sources.list.d/* &&
     curl -fsSL https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/prod.list |
     sudo tee /etc/apt/sources.list.d/prod.list >/dev/null
 
