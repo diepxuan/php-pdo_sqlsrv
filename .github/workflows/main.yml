@@ -79,7 +79,31 @@ jobs:
           DEB_SIGN_KEYID: ${{ secrets.GPG_KEY_ID }}
           GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
 
-      - name: Push to repository
+      - name: Put package to Personal Package archives
+        shell: bash
+        env:
+          GIT_COMMITTER_MESSAGE: ${{ github.event.head_commit.message }}
+        run: |
+          git clone --depth=1 --branch=main git@github.com:diepxuan/ppa.git
+
+          rm -rf ppa/src/$repository
+          mkdir -p ppa/src/$repository/
+          cp -r $source_dir/. ppa/src/$repository/
+
+          cd ppa
+          GIT_COMMITTER_MESSAGE=${GIT_COMMITTER_MESSAGE:-"Update Module $_project-$release_tag $DISTRIB-$RELEASE/$CODENAME"}
+          if [ -n "$(git status --porcelain=v1 2>/dev/null)" ]; then
+              git add src/
+              git commit -m "${GIT_COMMITTER_MESSAGE:-'Auto-commit'}"
+              if ! git push; then
+                  git stash
+                  git pull --rebase
+                  git stash pop
+                  git push || true
+              fi
+          fi
+
+      - name: Put package to Personal Package archives
         if: false
         run: |
           if [ "$(git status --porcelain=v1 2>/dev/null | wc -l)" != "0" ]; then
