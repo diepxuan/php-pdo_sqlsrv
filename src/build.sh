@@ -251,10 +251,13 @@ login = anonymous
 allow_unsigned_uploads = 0
 EOF
 
-package=$(ls -a $dists_dir | grep _source.changes | head -n 1)
+# package=$(ls -a $dists_dir | grep _source.changes | head -n 1)
 
-[[ -n $package ]] &&
-    package=$dists_dir/$package &&
-    [[ -f $package ]] &&
-    dput caothu91ppa $package || true
+# [[ -n $package ]] &&
+#     package=$dists_dir/$package &&
+#     [[ -f $package ]] &&
+#     dput caothu91ppa $package || true
+while read -r package; do
+    dput caothu91ppa $pwd_dir/$package || true
+done < <(ls $dists_dir | grep -E '.*(_source.changes)$')
 end_group
