@@ -197,12 +197,12 @@ rm -rf "$controlin-e"
 rm -rf "$changelog-e"
 
 start_group Show log
-echo $control 2>dev/null
-cat $control
-echo $controlin 2>dev/null
-cat $controlin
-echo $rules 2>dev/null
-cat $rules
+echo $control
+cat $control || true
+echo $controlin
+cat $controlin || true
+echo $rules
+cat $rules || true
 end_group
 
 start_group Show changelog
