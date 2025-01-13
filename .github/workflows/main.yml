@@ -76,6 +76,7 @@ jobs:
           DEBFULLNAME: Tran Ngoc Duc
           NAME: Tran Ngoc Duc
           DEBIAN_FRONTEND: noninteractive
+          GPG_KEY: ${{ secrets.GPG_KEY }}
           DEB_SIGN_KEYID: ${{ secrets.GPG_KEY_ID }}
           GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
 
