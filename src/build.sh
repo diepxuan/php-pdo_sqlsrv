@@ -52,9 +52,9 @@ start_group "Dynamically set environment variable"
 # directory
 env source_dir $(dirname $(realpath "$BASH_SOURCE"))
 env debian_dir $(realpath $source_dir/debian)
+env build_dir $(realpath $source_dir/build)
 env pwd_dir $(realpath $(dirname $source_dir))
 env dists_dir $(realpath $pwd_dir/dists)
-env build_dir $(realpath $pwd_dir/build)
 env ppa_dir $(realpath $pwd_dir/ppa)
 
 # user evironment
@@ -230,7 +230,7 @@ EOF
 end_group
 
 start_group Update Package Configuration in Changelog
-release_tag=$(echo $package_dist | sed 's|.tgz||g' | cut -d '-' -f2)
+release_tag=$(echo ${package_dist%.tgz} | cut -d '-' -f2)
 # release_tag="$release_tag+$DISTRIB~$RELEASE"
 # old_project=$(cat $changelog | head -n 1 | awk '{print $1}' | sed 's|[()]||g')
 # old_release_tag=$(cat $changelog | head -n 1 | awk '{print $2}' | sed 's|[()]||g')
