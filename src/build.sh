@@ -209,6 +209,8 @@ end_group
 _project=$(echo $project | sed 's|_|-|g')
 
 start_group update control file
+[[ -f $(realpath $debian_dir/$module.control.in) ]] &&
+    cat $(realpath $debian_dir/$module.control.in) | tee $controlin
 sed -i -e "s|_PROJECT_|$_project|g" $controlin
 sed -i -e "s|_MODULE_|$module|g" $controlin
 cat $controlin | tee $control
@@ -227,7 +229,7 @@ EOF
 [[ -f "$debian_dir/extend.$module.ini" ]] && cat "$debian_dir/extend.$module.ini" >>"$debian_dir/$module.ini"
 [[ -f "$build_dir/$module.config.m4" ]] &&
     cat "$build_dir/$module.config.m4" |
-    tee "$source_dir/${package_dist%.tgz}/config.m4"
+    tee -a "$source_dir/${package_dist%.tgz}/config.m4"
 end_group
 
 start_group Update Package Configuration in Changelog
