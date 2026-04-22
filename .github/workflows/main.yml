@@ -101,7 +101,7 @@ jobs:
         with:
           ssh_key_id: ${{ secrets.SSH_ID_RSA }}
 
-      - name: Add remotes and sync
+      - name: Sync to clone
         if: github.repository == 'diepxuan/php-ext'
         shell: bash
         run: |
@@ -131,5 +131,48 @@ jobs:
               echo "Failed to push to diepxuan/$repo"
             fi
           done
+
+          echo "Sync complete"
+
+      - name: Sync to base
+        if: github.repository != 'diepxuan/php-ext'
+        shell: bash
+        run: |
+          set -e
+
+          REPO_NAME="${{ github.repository }}"
+          REPO_NAME=${REPO_NAME#diepxuan/}
+          COMMIT_MSG="${{ github.event.head_commit.message }}"
+
+          # Bo qua neu la sync commit de tranh loop
+          if echo "$COMMIT_MSG" | grep -q "^\[sync\]"; then
+            echo "Skip sync - this is a sync commit"
+            exit 0
+          fi
+
+          # Them php-ext lam remote
+          echo "=== Adding remote: php-ext ==="
+          git remote add php-ext "git@github.com:diepxuan/php-ext.git" 2>/dev/null || true
+
+          # Fetch php-ext
+          git fetch php-ext
+
+          # Merge php-ext/main vao main hien tai
+          echo "=== Merging php-ext/main into $REPO_NAME ==="
+          if git merge php-ext/main --allow-unrelated-histories -m "[sync] Sync from php-ext: $COMMIT_MSG"; then
+            echo "Merged php-ext/main into $REPO_NAME"
+          else
+            echo "Merge conflict or no changes, aborting merge"
+            git merge --abort
+            exit 0
+          fi
+
+          # Push sang php-ext
+          echo "=== Pushing to php-ext ==="
+          if git push php-ext main; then
+            echo "Pushed to diepxuan/php-ext from $REPO_NAME"
+          else
+            echo "Failed to push to diepxuan/php-ext"
+          fi
 
           echo "Sync complete"
