@@ -25,7 +25,7 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: [ubuntu-latest]
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    # Steps represent a sequence of tasks that are executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout repository
@@ -76,3 +76,65 @@ jobs:
       GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
       GIT_COMMITTER_EMAIL: ${{ secrets.GIT_COMMITTER_EMAIL }}
       SSH_ID_RSA: ${{ secrets.SSH_ID_RSA }}
+
+  # Dong bo hai chieu giua php-ext va 3 repo con
+  # - php-ext update -> push sang php-runkit7, php-sqlsrv, php-pdo_sqlsrv
+  # - php-runkit7/php-sqlsrv/php-pdo_sqlsrv update -> merge ve php-ext
+  package-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup GPG
+        uses: diepxuan/.github/.github/actions/gpg-setup@main
+        with:
+          gpg_key: ${{ secrets.GPG_KEY }}
+          gpg_key_id: ${{ secrets.GPG_KEY_ID }}
+          committer_email: ${{ secrets.GIT_COMMITTER_EMAIL }}
+          committer_name: ${{ github.repository_owner }}
+
+      - name: SSH configuration
+        uses: diepxuan/.github/.github/actions/ssh-setup@main
+        with:
+          ssh_key_id: ${{ secrets.SSH_ID_RSA }}
+
+      - name: Add remotes and sync
+        shell: bash
+        run: |
+          set -e
+
+          # Chi dong bo neu la repo php-ext
+          if [ "${{ github.repository }}" != "diepxuan/php-ext" ]; then
+            echo "Skip sync - not php-ext repo (${github.repository})"
+            exit 0
+          fi
+
+          REPOS=("php-runkit7" "php-sqlsrv" "php-pdo_sqlsrv")
+          COMMIT_MSG="${{ github.event.head_commit.message }}"
+
+          # Bo qua neu la sync commit de tranh loop
+          if echo "$COMMIT_MSG" | grep -q "^\[sync\]"; then
+            echo "Skip sync - this is a sync commit"
+            exit 0
+          fi
+
+          # Them cac repo con lam remote
+          for repo in "${REPOS[@]}"; do
+            echo "=== Adding remote: $repo ==="
+            git remote add "$repo" "git@github.com:diepxuan/$repo.git" 2>/dev/null || true
+          done
+
+          # Push sang cac repo con
+          for repo in "${REPOS[@]}"; do
+            echo "=== Pushing to $repo ==="
+            if git push "$repo" main --force; then
+              echo "Pushed to diepxuan/$repo"
+            else
+              echo "Failed to push to diepxuan/$repo"
+            fi
+          done
+
+          echo "Sync complete"
