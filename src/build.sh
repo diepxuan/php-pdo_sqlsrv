@@ -220,8 +220,8 @@ end_group
 _project=$(echo $project | sed 's|_|-|g')
 
 start_group update control file
-[[ -f $(realpath $debian_dir/$module.control.in) ]] &&
-    cat $(realpath $debian_dir/$module.control.in) | tee $controlin
+[[ -f $(realpath $debian_dir/$module/control.in) ]] &&
+    cat $(realpath $debian_dir/$module/control.in) | tee $controlin
 sed -i -e "s|_PROJECT_|$_project|g" $controlin
 sed -i -e "s|_MODULE_|$module|g" $controlin
 cat $controlin | tee $control
