@@ -177,3 +177,18 @@ jobs:
           fi
 
           echo "Sync complete"
+
+      - name: Sync PPA submodule
+        if: github.repository == 'diepxuan/php-ext'
+        shell: bash
+        run: |
+          set -e
+
+          git clone --depth=1 --branch=main git@github.com:diepxuan/ppa.git
+          cd ppa
+          git submodule update --init --recursive --remote
+          if [ -n "$(git status --porcelain=v1 2>/dev/null)" ]; then
+            git add src/
+            git commit -m "chore: sync php-ext submodule: ${{ github.event.head_commit.message }}"
+            git push || true
+          fi
