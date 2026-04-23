@@ -1,19 +1,51 @@
-* [php-runkit7](https://github.com/diepxuan/php-runkit7)
-* [php-sqlsrv](https://github.com/diepxuan/php-sqlsrv)
-* [php-pdo_sqlsrv](https://github.com/diepxuan/php-pdo_sqlsrv)
+# PHP-EXT - DiepXuan PHP Extension Packages
 
-Packages:
----
-`runkit` for PHP 7.2+
-  - [runkit7](https://pecl.php.net/package/runkit7) implementing php7.2+ support
-`sqlsrv` for PHP 8.1+
-  - [sqlsrv](https://pecl.php.net/package/sqlsrv) is Microsoft Drivers for PHP for SQL Server (SQLSRV)
-`pdo_sqlsrv` for PHP 8.1+
-  - [pdo_sqlsrv](https://pecl.php.net/package/pdo_sqlsrv) is Microsoft Drivers for PHP for SQL Server (PDO_SQLSRV)
+Build system thong nhat cho PHP PECL extensions.
+Xem [ARCHITECTURE.md](ARCHITECTURE.md) de hieu cau truc.
 
+## Extensions
 
-BUILDING AND INSTALLING IN UNIX
----
-- `pecl install runkit7` can be used to install [runkit7 releases published on PECL](https://pecl.php.net/package/runkit7).
-- `pecl install sqlsrv` can be used to install [sqlsrv releases published on PECL](https://pecl.php.net/package/sqlsrv).
-- `pecl install pdo_sqlsrv` can be used to install [sqlsrv releases published on PECL](https://pecl.php.net/package/pdo_sqlsrv).
+| Extension | PECL | PHP | Description |
+|-----------|------|-----|-------------|
+| **sqlsrv** | [sqlsrv](https://pecl.php.net/package/sqlsrv) | 8.1+ | Microsoft Drivers for PHP for SQL Server (SQLSRV) |
+| **pdo_sqlsrv** | [pdo_sqlsrv](https://pecl.php.net/package/pdo_sqlsrv) | 8.1+ | Microsoft Drivers for PHP for SQL Server (PDO_SQLSRV) |
+| **runkit7** | [runkit7](https://pecl.php.net/package/runkit7) | 7.2+ | PHP runkit7 extension |
+
+## Dependencies
+
+### sqlsrv / pdo_sqlsrv
+
+- **Build:** unixodbc-dev, unixodbc, msodbcsql18, php-dev
+- **Runtime:** msodbcsql18
+
+### runkit7
+
+- **Build:** php-dev
+- **Runtime:** (none)
+
+## Distributions
+
+- **Debian:** 10 (Buster), 11 (Bullseye), 12 (Bookworm)
+- **Ubuntu:** 18.04 (Bionic), 20.04 (Focal), 22.04 (Jammy), 24.04 (Noble), 24.10 (Oracular), 25.04 (Plucky)
+
+## Building
+
+```bash
+cd src/
+bash build.sh
+```
+
+Environment variables:
+- `repository` - Xac dinh module (e.g., `diepxuan/php-sqlsrv`)
+- `GPG_KEY`, `GPG_KEY_ID` - Package signing
+
+## Installation
+
+```bash
+# Add PPA
+echo "deb https://ppa.diepxuan.com <codename> main" | sudo tee /etc/apt/sources.list.d/diepxuan.list
+
+# Install
+sudo apt update
+sudo apt install php-sqlsrv php-pdo-sqlsrv php-runkit7
+```
