@@ -191,12 +191,23 @@ gpg --list-secret-keys --keyid-format=long
 end_group
 
 start_group "extract package source"
-stability=$(pecl search $module 2>/dev/null | grep ^$module | awk '{print $3}' | sed 's|[()]||g')
-pecl download $module-$stability
-# pecl download runkit7-alpha
-package_dist=$(ls | grep $module)
-tar xvzf $package_dist -C $source_dir
-package_clog=$(php -r "echo simplexml_load_file('$source_dir/package.xml')->notes;" 2>/dev/null)
+
+# Doc module-specific source config
+if [[ -f "$debian_dir/$module/source" ]]; then
+    source "$debian_dir/$module/source"
+fi
+
+if [[ -n "$SOURCE_URL" ]]; then
+    git clone --depth=1 --branch="${SOURCE_BRANCH:-main}" "$SOURCE_URL" "$source_dir/$module-src"
+    cd "$source_dir/$module-src"
+    package_clog=$(php -r "echo simplexml_load_file('package.xml')->notes;" 2>/dev/null)
+else
+    stability=$(pecl search $module 2>/dev/null | grep ^$module | awk '{print $3}' | sed 's|[()]||g')
+    pecl download $module-$stability
+    package_dist=$(ls | grep $module)
+    tar xvzf $package_dist -C $source_dir
+    package_clog=$(php -r "echo simplexml_load_file('$source_dir/package.xml')->notes;" 2>/dev/null)
+fi
 end_group
 
 start_group "view source"
