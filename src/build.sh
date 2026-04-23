@@ -237,7 +237,7 @@ cat | tee "$debian_dir/$_project.php" <<-EOF
 mod debian/$module.ini
 EOF
 [[ -f "$debian_dir/$module/rules" ]] && cat "$debian_dir/$module/rules" >>"$rules"
-[[ -f "$debian_dir/extend.$module.ini" ]] && cat "$debian_dir/extend.$module.ini" >>"$debian_dir/$module.ini"
+[[ -f "$debian_dir/$module/php.ini" ]] && cat "$debian_dir/$module/php.ini" >>"$debian_dir/$module.ini"
 [[ -f "$build_dir/$module.config.m4" ]] &&
     cat "$build_dir/$module.config.m4" |
     tee -a "$source_dir/${package_dist%.tgz}/config.m4"
