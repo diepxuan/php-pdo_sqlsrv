@@ -191,12 +191,37 @@ gpg --list-secret-keys --keyid-format=long
 end_group
 
 start_group "extract package source"
-stability=$(pecl search $module 2>/dev/null | grep ^$module | awk '{print $3}' | sed 's|[()]||g')
-pecl download $module-$stability
-# pecl download runkit7-alpha
-package_dist=$(ls | grep $module)
-tar xvzf $package_dist -C $source_dir
-package_clog=$(php -r "echo simplexml_load_file('$source_dir/package.xml')->notes;" 2>/dev/null)
+
+# Doc module-specific source config
+if [[ -f "$debian_dir/$module/source" ]]; then
+    source "$debian_dir/$module/source"
+fi
+
+if [[ -n "$SOURCE_URL" ]]; then
+    # Extract owner/repo from SOURCE_URL (e.g., https://github.com/diepxuan/runkit7.git)
+    _repo_path=$(echo "$SOURCE_URL" | sed 's|https://github.com/||;s|\.git$||')
+    _repo_owner=$(echo "$_repo_path" | cut -d '/' -f1)
+    _repo_project=$(echo "$_repo_path" | cut -d '/' -f2)
+
+    # Get latest release version (similar to pecl search)
+    stability=$(curl -s "https://api.github.com/repos/${_repo_owner}/${_repo_project}/releases/latest" | grep -o '"tag_name": *"[^"]*"' | cut -d '"' -f4)
+
+    # Download release tarball (similar to pecl download)
+    package_dist="${_repo_project}-${stability}.tgz"
+    curl -sL "https://github.com/${_repo_owner}/${_repo_project}/releases/download/${stability}/${package_dist}" -o "$source_dir/${package_dist}"
+
+    # Extract tarball
+    tar xvzf "$source_dir/${package_dist}" -C "$source_dir"
+
+    # Read changelog notes
+    package_clog=$(php -r "echo simplexml_load_file('$source_dir/package.xml')->notes;" 2>/dev/null)
+else
+    stability=$(pecl search $module 2>/dev/null | grep ^$module | awk '{print $3}' | sed 's|[()]||g')
+    pecl download $module-$stability
+    package_dist=$(ls | grep $module)
+    tar xvzf $package_dist -C $source_dir
+    package_clog=$(php -r "echo simplexml_load_file('$source_dir/package.xml')->notes;" 2>/dev/null)
+fi
 end_group
 
 start_group "view source"
@@ -209,8 +234,8 @@ end_group
 _project=$(echo $project | sed 's|_|-|g')
 
 start_group update control file
-[[ -f $(realpath $debian_dir/$module.control.in) ]] &&
-    cat $(realpath $debian_dir/$module.control.in) | tee $controlin
+[[ -f $(realpath $debian_dir/$module/control.in) ]] &&
+    cat $(realpath $debian_dir/$module/control.in) | tee $controlin
 sed -i -e "s|_PROJECT_|$_project|g" $controlin
 sed -i -e "s|_MODULE_|$module|g" $controlin
 cat $controlin | tee $control
@@ -225,8 +250,8 @@ EOF
 cat | tee "$debian_dir/$_project.php" <<-EOF
 mod debian/$module.ini
 EOF
-[[ -f "$debian_dir/php-$module.rules" ]] && cat "$debian_dir/php-$module.rules" >>"$rules"
-[[ -f "$debian_dir/extend.$module.ini" ]] && cat "$debian_dir/extend.$module.ini" >>"$debian_dir/$module.ini"
+[[ -f "$debian_dir/$module/rules" ]] && cat "$debian_dir/$module/rules" >>"$rules"
+[[ -f "$debian_dir/$module/php.ini" ]] && cat "$debian_dir/$module/php.ini" >>"$debian_dir/$module.ini"
 [[ -f "$build_dir/$module.config.m4" ]] &&
     cat "$build_dir/$module.config.m4" |
     tee -a "$source_dir/${package_dist%.tgz}/config.m4"
