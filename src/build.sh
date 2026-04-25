@@ -198,9 +198,23 @@ if [[ -f "$debian_dir/$module/source" ]]; then
 fi
 
 if [[ -n "$SOURCE_URL" ]]; then
-    git clone --depth=1 --branch="${SOURCE_BRANCH:-main}" "$SOURCE_URL" "$source_dir/$module-src"
-    cd "$source_dir/$module-src"
-    package_clog=$(php -r "echo simplexml_load_file('package.xml')->notes;" 2>/dev/null)
+    # Extract owner/repo from SOURCE_URL (e.g., https://github.com/diepxuan/runkit7.git)
+    _repo_path=$(echo "$SOURCE_URL" | sed 's|https://github.com/||;s|\.git$||')
+    _repo_owner=$(echo "$_repo_path" | cut -d '/' -f1)
+    _repo_project=$(echo "$_repo_path" | cut -d '/' -f2)
+
+    # Get latest release version (similar to pecl search)
+    stability=$(curl -s "https://api.github.com/repos/${_repo_owner}/${_repo_project}/releases/latest" | grep -o '"tag_name": *"[^"]*"' | cut -d '"' -f4)
+
+    # Download release tarball (similar to pecl download)
+    package_dist="${_repo_project}-${stability}.tgz"
+    curl -sL "https://github.com/${_repo_owner}/${_repo_project}/releases/download/${stability}/${package_dist}" -o "$source_dir/${package_dist}"
+
+    # Extract tarball
+    tar xvzf "$source_dir/${package_dist}" -C "$source_dir"
+
+    # Read changelog notes
+    package_clog=$(php -r "echo simplexml_load_file('$source_dir/package.xml')->notes;" 2>/dev/null)
 else
     stability=$(pecl search $module 2>/dev/null | grep ^$module | awk '{print $3}' | sed 's|[()]||g')
     pecl download $module-$stability
